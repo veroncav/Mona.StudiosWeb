@@ -1,0 +1,202 @@
+:root{
+    --bg: #f8dfe3;
+    --section: #fff7f8;
+    --gold: #b8926a;
+    --text: #2a2320;
+    --muted: #6b5f57;
+    --pink: #eec3ca;
+    --pinkHover: #e6b4bd;
+    --outline: rgba(216,168,176,0.9);
+    --radius: 44px;
+}
+
+.schedulePage{
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.scheduleContainer{
+    width: min(1100px, 92%);
+    margin: 0 auto;
+}
+
+/* Hero */
+.scheduleHero{
+    padding: 180px 0 70px; /* под fixed header на Home не завязано */
+    background: var(--bg);
+}
+
+.scheduleTitle{
+    margin: 0 0 14px;
+    font-size: 56px;
+    font-weight: 400;
+    color: var(--gold);
+    line-height: 1.05;
+}
+
+.scheduleLead{
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: 75ch;
+}
+
+.scheduleActions{
+    margin-top: 26px;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.sBtn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+
+    padding: 14px 28px;
+    border-radius: 999px;
+
+    font-size: 16px;
+    box-shadow: 0 10px 22px rgba(0,0,0,0.10);
+    transition: .15s ease;
+}
+
+.sBtn--primary{
+    background: var(--pink);
+    color: #fff;
+}
+.sBtn--primary:hover{
+    background: var(--pinkHover);
+    transform: translateY(-2px);
+}
+
+.sBtn--outline{
+    background: rgba(255,255,255,0.55);
+    color: #b57f88;
+    border: 1px solid var(--outline);
+    box-shadow: none;
+}
+.sBtn--outline:hover{
+    background: rgba(255,255,255,0.8);
+    transform: translateY(-1px);
+}
+
+.sBtn--small{
+    padding: 12px 22px;
+    font-size: 14px;
+}
+
+/* Main */
+.scheduleMain{
+    background: var(--section);
+    padding: 70px 0 110px;
+}
+
+.scheduleGrid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.slotCard{
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 22px 22px 20px;
+    box-shadow: 0 12px 26px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+.slotTop{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.slotDate{
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.slotTime{
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.slotTitle{
+    margin: 10px 0 12px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.slotMeta{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.chip{
+    display: inline-flex;
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    background: rgba(238,195,202,0.35);
+    color: var(--text);
+}
+.chip--muted{
+    background: rgba(0,0,0,0.04);
+    color: var(--muted);
+}
+
+.slotBottom{
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.sLink{
+    color: #b57f88;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(181,127,136,0.35);
+    padding-bottom: 2px;
+}
+.sLink:hover{
+    border-bottom-color: rgba(156,96,106,0.7);
+    color: #9c606a;
+}
+
+/* Note */
+.noteBlock{
+    margin-top: 26px;
+    background: rgba(255,255,255,0.65);
+    border: 1px solid rgba(216,168,176,0.25);
+    border-radius: var(--radius);
+    padding: 22px;
+}
+
+.noteTitle{
+    margin: 0 0 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.noteText{
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+/* Responsive */
+@media (max-width: 900px){
+    .scheduleTitle{ font-size: 42px; }
+    .scheduleGrid{ grid-template-columns: 1fr; }
+    .scheduleHero{ padding: 150px 0 60px; }
+}

@@ -5,6 +5,7 @@ import Workshops from "./pages/Workshops.jsx";
 import Schedule from "./pages/Schedule.jsx";
 import Gallery from "./pages/Gallery.jsx";
 import Contact from "./pages/Contact.jsx";
+import Events from "./pages/Events.jsx";
 
 import "./App.css";
 
@@ -20,6 +21,7 @@ export default function App() {
                 <Route path="/schedule" element={<Schedule />} />
                 <Route path="/gallery" element={<Gallery />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/events" element={<Events />} />
             </Routes>
         </>
     );
