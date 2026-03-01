@@ -2,12 +2,9 @@ import "./events.css";
 import eventsVideo from "../assets/events.mp4";
 
 const workshopOptions = [
-    "Живопись (Pinterest style)",
-    "Украшения (браслеты/серьги)",
+    "Картины",
+    "Украшения ",
     "Роспись шопперов",
-    "Свечи и арома-саше",
-    "Кремовая флористика",
-    "Бенто-тортики",
 ];
 
 const includedList = [
@@ -32,12 +29,6 @@ export default function Events() {
                         У нас можно отметить День Рождения, девичник, устроить свидание или просто
                         собраться компанией друзей или коллег и увлекательно провести время вместе!
                     </p>
-
-                    <div className="eventsBadges">
-                        <span className="eChip">до 12 человек</span>
-                        <span className="eChip">любой день и время</span>
-                        <span className="eChip">мастер-класс на выбор</span>
-                    </div>
 
                     <div className="eventsActions">
                         <a className="eBtn eBtn--primary" href="#request">Оставить заявку</a>
@@ -85,7 +76,7 @@ export default function Events() {
                                 </div>
 
                                 <div className="eSmallNote">
-                                    * Если хочешь, мы можем собрать индивидуальный формат и тайминг под вашу компанию.
+                                    * Подробнее .
                                 </div>
                             </div>
                         </div>
@@ -143,7 +134,7 @@ export default function Events() {
                             </button>
 
                             <div className="eSmallNote">
-                                * демо-форма для диплома (позже можно подключить EmailJS/Telegram).
+                                * демо-форма
                             </div>
                         </form>
                     </div>

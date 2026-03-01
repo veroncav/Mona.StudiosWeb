@@ -1,4 +1,6 @@
 import { Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+
 import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
 import Workshops from "./pages/Workshops.jsx";
@@ -12,10 +14,11 @@ import "./App.css";
 export default function App() {
     return (
         <>
+            <Header />
+
             <Routes>
                 <Route path="/" element={<Home />} />
 
-                {/* отдельные страницы */}
                 <Route path="/about" element={<About />} />
                 <Route path="/workshops" element={<Workshops />} />
                 <Route path="/schedule" element={<Schedule />} />

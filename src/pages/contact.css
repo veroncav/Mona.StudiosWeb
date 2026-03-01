@@ -1,0 +1,143 @@
+:root{
+    --bg:#f8dfe3;
+    --section:#fff7f8;
+    --gold:#b8926a;
+    --text:#2a2320;
+    --muted:#6b5f57;
+    --pink:#eec3ca;
+    --pinkHover:#e6b4bd;
+    --outline:rgba(216,168,176,0.9);
+    --radius:44px;
+}
+
+/* PAGE */
+.contactPage{
+    min-height: 100vh;
+    background: var(--bg);
+    padding-top: 150px;
+    padding-bottom: 120px;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.contactContainer{
+    width: min(950px, 92%);
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* TITLE */
+.contactTitle{
+    font-size: 56px;
+    font-weight: 400;
+    color: var(--gold);
+    margin: 0 0 20px;
+    line-height: 1.05;
+}
+
+.contactLead{
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: 720px;
+    margin: 0 auto 60px;
+}
+
+/* CARDS WRAPPER */
+.contactCards{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+}
+
+/* CARD */
+.contactCard{
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    background: white;
+    padding: 26px 34px;
+    border-radius: var(--radius);
+
+    text-decoration: none;
+    color: var(--text);
+
+    box-shadow: 0 16px 32px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.05);
+
+    transition: all .25s ease;
+    min-width: 260px;
+}
+
+.contactCard:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 22px 38px rgba(0,0,0,0.14);
+}
+
+/* ICON */
+.contactIcon{
+    font-size: 32px;
+    color: var(--pink);
+    transition: .2s ease;
+}
+
+.contactCard:hover .contactIcon{
+    color: var(--pinkHover);
+}
+
+/* TEXT */
+.contactLabel{
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.contactValue{
+    font-size: 17px;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+/* ADDRESS BLOCK */
+.contactAddress{
+    background: var(--section);
+    padding: 30px;
+    border-radius: var(--radius);
+    font-size: 16px;
+    color: var(--muted);
+    box-shadow: 0 12px 26px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.04);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* OPTIONAL subtle decorative fade */
+.contactPage::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:300px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+    pointer-events:none;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px){
+
+    .contactTitle{
+        font-size: 40px;
+    }
+
+    .contactCards{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contactCard{
+        width: 100%;
+        justify-content: center;
+    }
+}

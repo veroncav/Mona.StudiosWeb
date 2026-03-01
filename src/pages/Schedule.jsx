@@ -1,5 +1,6 @@
 import "./schedule.css";
 
+
 const scheduleData = [
     {
         date: "Сб, 9 марта",
