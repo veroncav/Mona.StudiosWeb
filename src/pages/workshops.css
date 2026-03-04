@@ -1,0 +1,151 @@
+:root{
+    --bg:#f8dfe3;
+    --section:#fff7f8;
+    --gold:#b8926a;
+    --text:#2a2320;
+    --muted:#6b5f57;
+
+    --pink:#eec3ca;
+    --pinkHover:#e6b4bd;
+    --outline: rgba(216,168,176,0.9);
+
+    --radius: 44px;
+
+    --fontBody: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    --fontTitle: "Playfair Display", Georgia, serif;
+}
+
+/* ===== page (full width background) ===== */
+.workshopsPage{
+    position: relative;
+    min-height: 100vh;
+    font-family: var(--fontBody);
+    color: var(--text);
+    padding: 140px 20px 100px;
+    z-index: 1;
+}
+
+/* light pink background to full viewport */
+.workshopsPage::before{
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: var(--section);
+    z-index: -1;
+}
+
+/* ===== centered container + centered text ===== */
+.workshopsContainer{
+    width: min(900px, 92%);
+    margin: 0 auto;
+    text-align: center;
+
+    /* важно: центрируем все дочерние блоки */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ===== title + lead ===== */
+.workshopsTitle{
+    font-family: var(--fontTitle);
+    font-size: 52px;
+    font-weight: 500;
+    color: var(--gold);
+    margin: 0 0 14px;
+    line-height: 1.05;
+    letter-spacing: 0.2px;
+    text-align: center;
+}
+
+.workshopsLead{
+    color: var(--muted);
+    line-height: 1.7;
+    margin: 0 auto 60px;
+    max-width: 680px;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* ===== blocks ===== */
+.workshopBlock{
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto 90px;
+    text-align: center;
+}
+
+/* заголовок блока */
+.workshopName{
+    font-family: var(--fontTitle);
+    font-size: 36px;
+    font-weight: 500;
+    margin: 0 0 24px;
+    color: var(--text);
+    line-height: 1.15;
+    text-align: center;
+}
+
+/* ===== image (center + no crop) ===== */
+.workshopImage{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 28px;
+}
+
+.workshopImage img{
+    width: 100%;
+    max-width: 760px;
+
+    height: auto;
+    max-height: 520px;
+
+    object-fit: contain; /* НЕ обрезает */
+    object-position: center;
+
+    display: block;
+    margin: 0 auto;
+
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 14px 32px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+/* ===== text ===== */
+.workshopText{
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.85;
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.workshopText b{
+    color: var(--text);
+    font-weight: 600;
+}
+
+/* ===== responsive ===== */
+@media (max-width: 900px){
+    .workshopsTitle{ font-size: 42px; }
+    .workshopName{ font-size: 30px; }
+    .workshopBlock{ margin-bottom: 70px; }
+    .workshopImage img{ max-height: 420px; }
+}
+
+@media (max-width: 520px){
+    .workshopsPage{ padding-top: 120px; }
+
+    .workshopsTitle{ font-size: 34px; }
+    .workshopName{ font-size: 26px; }
+    .workshopText{ font-size: 15px; }
+
+    .workshopImage img{
+        max-height: 340px;
+        border-radius: 16px;
+    }
+}
