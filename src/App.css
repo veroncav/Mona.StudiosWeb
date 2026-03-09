@@ -1,11 +1,10 @@
-/* Глобальный сброс */
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  padding-top: 120px; /* место под фиксированный header */
+  padding-top: 120px;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   background: #f8dfe3;
 }

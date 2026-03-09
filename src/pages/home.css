@@ -15,7 +15,6 @@
     --headerHeight: 120px;
 }
 
-/* чтобы якоря не прятались под header */
 html{
     scroll-padding-top: var(--headerHeight);
 }
@@ -49,7 +48,7 @@ html, body{
     background: rgba(248, 223, 227, 0.88);
     backdrop-filter: blur(12px);
 
-    z-index: 9999; /* выше, чтобы ни видео, ни секции не перекрывали */
+    z-index: 9999;
 }
 
 .header__logoLink{
@@ -88,11 +87,9 @@ html, body{
 }
 
 /* ========== HERO ========== */
-/* ВАЖНО: твой Home.jsx сейчас НЕ оборачивает hero__frame в .hero,
-   поэтому стилизуем hero__frame и делаем ему отступ сверху под header */
 .hero__frame{
     width: min(1200px, 92%);
-    margin: 22px auto 110px;  /* сверху чуть воздуха, снизу большой отступ */
+    margin: 22px auto 110px;
     position: relative;
 
     border-radius: var(--radiusXL);

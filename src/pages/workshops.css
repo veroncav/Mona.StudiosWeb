@@ -34,13 +34,11 @@
     z-index: -1;
 }
 
-/* ===== centered container + centered text ===== */
 .workshopsContainer{
     width: min(900px, 92%);
     margin: 0 auto;
     text-align: center;
 
-    /* важно: центрируем все дочерние блоки */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -86,7 +84,7 @@
     text-align: center;
 }
 
-/* ===== image (center + no crop) ===== */
+/* ===== image ===== */
 .workshopImage{
     width: 100%;
     display: flex;

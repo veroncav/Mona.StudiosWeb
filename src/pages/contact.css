@@ -111,8 +111,6 @@
     max-width: 500px;
     margin: 0 auto;
 }
-
-/* OPTIONAL subtle decorative fade */
 .contactPage::before{
     content:"";
     position:absolute;

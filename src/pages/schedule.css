@@ -24,7 +24,7 @@
 
 /* Hero */
 .scheduleHero{
-    padding: 180px 0 70px; /* под fixed header на Home не завязано */
+    padding: 180px 0 70px;
     background: var(--bg);
 }
 
