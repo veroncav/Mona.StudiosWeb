@@ -1,6 +1,5 @@
 import "./home.css";
 import mainImg from "../assets/main.png";
-import logoImg from "../assets/logomona.jpg";
 import aboutImg from "../assets/about1.jpg";
 import jewelryImg from "../assets/jewelry.jpg";
 import paintingsImg from "../assets/paintings.jpg";
@@ -10,16 +9,6 @@ import { Link } from "react-router-dom";
 export default function Home() {
     return (
         <div className="home">
-            {/* HEADER фиксированный */}
-            <header className="header">
-                <Link to="/" className="header__logoLink" aria-label="На главную">
-                    <img src={logoImg} className="header__logo" alt="Mona Studios"/>
-                </Link>
-
-                <a href="#book" className="header__btn">
-                    записаться
-                </a>
-            </header>
 
             {/* HERO */}
             <div className="hero__frame">
