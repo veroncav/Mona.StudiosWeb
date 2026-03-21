@@ -14,18 +14,16 @@ function App() {
     return (
         <>
             <Header />
-            <main style={{ paddingTop: "120px" }}>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/workshops" element={<Workshops />} />
-                    <Route path="/schedule" element={<Schedule />} />
-                    <Route path="/events" element={<Events />} />
-                    <Route path="/gallery" element={<Gallery />} />
-                    <Route path="/faq" element={<FAQ />} />
-                    <Route path="/contact" element={<Contact />} />
-                </Routes>
-            </main>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/workshops" element={<Workshops />} />
+                <Route path="/schedule" element={<Schedule />} />
+                <Route path="/events" element={<Events />} />
+                <Route path="/gallery" element={<Gallery />} />
+                <Route path="/faq" element={<FAQ />} />
+                <Route path="/contact" element={<Contact />} />
+            </Routes>
         </>
     );
 }

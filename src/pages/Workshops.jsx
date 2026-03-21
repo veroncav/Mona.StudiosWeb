@@ -8,7 +8,6 @@ export default function Workshops() {
     return (
         <div className="workshopsPage">
             <div className="workshopsContainer">
-
                 <h1 className="workshopsTitle">Мастер-классы</h1>
 
                 <p className="workshopsLead">
@@ -17,7 +16,6 @@ export default function Workshops() {
                     работу вы заберёте с собой.
                 </p>
 
-                {/* PAINTING */}
                 <section className="workshopBlock">
                     <h2 className="workshopName">Картины на холсте</h2>
 
@@ -38,7 +36,6 @@ export default function Workshops() {
                     </p>
                 </section>
 
-                {/* JEWELRY */}
                 <section className="workshopBlock">
                     <h2 className="workshopName">Создание украшений</h2>
 
@@ -57,7 +54,6 @@ export default function Workshops() {
                     </p>
                 </section>
 
-                {/* SHOPPER */}
                 <section className="workshopBlock">
                     <h2 className="workshopName">Роспись шопперов</h2>
 
@@ -76,7 +72,6 @@ export default function Workshops() {
                         который можно использовать каждый день.
                     </p>
                 </section>
-
             </div>
         </div>
     );
