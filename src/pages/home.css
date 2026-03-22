@@ -1,4 +1,4 @@
-:root{
+:root {
     --bg: #f8dfe3;
     --section: #fff7f8;
     --gold: #b8926a;
@@ -15,226 +15,324 @@
     --headerHeight: 120px;
 }
 
-html{
+/* ===== Global ===== */
+html {
     scroll-padding-top: var(--headerHeight);
 }
 
-/* ===== Base ===== */
-html, body{
+html, body {
     margin: 0;
     padding: 0;
     background: var(--bg);
     font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-/* home container */
-.home{
+/* ===== HOME CONTAINER ===== */
+.home {
     min-height: 100vh;
     background: var(--bg);
 }
 
-/* ========== HEADER ========== */
-.header{
+/* ===== HEADER ===== */
+.header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: var(--headerHeight);
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     background: rgba(248, 223, 227, 0.88);
     backdrop-filter: blur(12px);
-
     z-index: 9999;
 }
 
-.header__logoLink{
+.header__logoLink {
     display: inline-flex;
     border-radius: 999px;
 }
 
-.header__logo{
+.header__logo {
     width: 92px;
     height: 92px;
     border-radius: 50%;
     object-fit: cover;
-
     box-shadow: 0 10px 24px rgba(0,0,0,0.14);
     border: 4px solid rgba(255,255,255,0.75);
     transition: transform .15s ease;
 }
 
-.header__logo:hover{
+.header__logo:hover {
     transform: translateY(-2px);
 }
 
-.header__btn{
+.header__btn {
     position: absolute;
     right: 30px;
-
     background: rgba(255,255,255,0.35);
     border: 1px solid var(--btnOutlineBorder);
-
     padding: 12px 34px;
     border-radius: 999px;
-
     text-decoration: none;
     color: var(--btnOutlineText);
     font-size: 16px;
 }
 
-/* ========== HERO ========== */
-.hero__frame{
+/* ===== HERO ===== */
+.hero__frame {
     width: min(1200px, 92%);
     margin: 22px auto 110px;
     position: relative;
-
     border-radius: var(--radiusXL);
     overflow: hidden;
-
     box-shadow: 0 12px 30px rgba(0,0,0,0.12);
     background: #fff;
 }
 
-.hero__img{
+.hero__img {
     width: 100%;
     height: auto;
     display: block;
 }
 
-/* кнопки внутри картинки */
-.hero__buttons{
+.hero__buttons {
     position: absolute;
-
     right: clamp(18px, 4vw, 54px);
     bottom: clamp(18px, 3vw, 44px);
-
     display: flex;
     flex-direction: column;
     gap: 12px;
-
     max-width: min(360px, 70%);
 }
 
-.hero__btn{
+.hero__btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
     padding: 16px 26px;
     border-radius: 999px;
-
     font-size: 16px;
     text-decoration: none;
     text-align: center;
     line-height: 1.2;
-
     box-shadow: 0 10px 24px rgba(0,0,0,0.18);
     transition: .2s ease;
-
     white-space: normal;
 }
 
-.hero__btn--primary{
+.hero__btn--primary {
     background: var(--btnPink);
     color: white;
 }
-.hero__btn--primary:hover{
+
+.hero__btn--primary:hover {
     background: var(--btnPinkHover);
     transform: translateY(-1px);
 }
 
-.hero__btn--secondary{
+.hero__btn--secondary {
     background: rgba(255,255,255,0.9);
     color: var(--btnOutlineText);
 }
-.hero__btn--secondary:hover{
+
+.hero__btn--secondary:hover {
     background: white;
     transform: translateY(-1px);
 }
 
-/* ========== ABOUT ========== */
-.about{
+/* ===== ABOUT ===== */
+.about {
     padding: 110px 0;
     background: var(--section);
 }
 
-.about__title{
+.about__title {
     width: min(1100px, 92%);
     margin: 0 auto 44px;
-
     font-size: 54px;
     font-weight: 400;
     color: var(--gold);
 }
 
-.about__content{
+.about__content {
     width: min(1100px, 92%);
     margin: 0 auto;
-
     display: grid;
     grid-template-columns: 1.05fr 0.95fr;
     gap: 34px;
     align-items: start;
 }
 
-.about__textBlock{
+.about__textBlock {
     display: flex;
     flex-direction: column;
     gap: 18px;
 }
 
-.about__card{
+.about__imageBlock img, .about__imageBlock video.about__video {
+    width: 100%;
+    border-radius: 28px;
+    box-shadow: 0 12px 26px rgba(0,0,0,0.1);
+    object-fit: cover;
+    margin-top: -30px;
+}
+
+.about__card {
     background: white;
     padding: 34px;
     border-radius: 44px;
-
     line-height: 1.7;
     color: var(--muted);
     position: relative;
-
     box-shadow: 0 12px 26px rgba(0,0,0,0.06);
     border: 1px solid rgba(0,0,0,0.04);
 }
 
-.about__card--pink{
+.about__card--pink {
     background: #f3d9dd;
-    border: 1px solid rgba(216,168,176,0.20);
+    border: 1px solid rgba(216,168,176,0.2);
 }
 
-.about__heart{
+.about__heart {
     position: absolute;
     left: 26px;
     top: 26px;
     color: #b57f88;
 }
 
-.about__card p{
+.about__card p {
     margin: 0;
     padding-left: 36px;
 }
 
-.about__imageBlock img{
-    width: 100%;
-    border-radius: 44px;
-    box-shadow: 0 12px 26px rgba(0,0,0,0.10);
-}
-
-/* ========== WORKSHOPS ========== */
-.workshops{
+/* ===== CELEBRATION / ПРАЗДНИК ===== */
+.celebration {
     padding: 110px 0;
     background: var(--section);
 }
 
-.workshops__container{
+.celebration__container {
     width: min(1100px, 92%);
     margin: 0 auto;
 }
 
-.workshops__head{
+.celebration__title {
+    font-size: 54px;
+    color: var(--gold);
+    margin-bottom: 16px;
+}
+
+.celebration__lead {
+    font-size: 18px;
+    color: var(--muted);
+    margin-bottom: 44px;
+}
+
+.celebration__content {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 18px;
+    margin-bottom: 44px;
+}
+
+.celebration__videoBlock video {
+    width: 100%;
+    border-radius: 28px;
+    box-shadow: 0 12px 26px rgba(0,0,0,0.12);
+}
+
+.celebration__photos {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.celebration__photos img {
+    width: 100%;
+    border-radius: 28px;
+    box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+    object-fit: cover;
+}
+
+.celebration__info {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.celebration__cta {
+    display: inline-flex;
+    padding: 14px 34px;
+    border-radius: 999px;
+    background: var(--btnPink);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+    transition: 0.15s ease;
+    max-width: 200px;
+    justify-content: center;
+    text-align: center;
+}
+
+.celebration__cta:hover {
+    background: var(--btnPinkHover);
+}
+
+.celebration__cta--outline {
+    background: #fff;
+    color: var(--btnOutlineText);
+    border: 1px solid var(--btnOutlineBorder);
+}
+
+.celebration__formats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.celebration__format {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 999px;
+    background: #fff;
+    color: var(--btnOutlineText);
+    text-decoration: none;
+    border: 1px solid var(--btnOutlineBorder);
+    font-size: 14px;
+    transition: 0.15s ease;
+}
+
+.celebration__format:hover {
+    background: var(--btnPink);
+    color: #fff;
+}
+
+.celebration__textBlock {
+    margin-top: 22px;
+    line-height: 1.7;
+    color: var(--muted);
+}
+
+.celebration__textBlock p {
+    margin-bottom: 12px;
+}
+
+/* ===== WORKSHOPS ===== */
+.workshops {
+    padding: 110px 0;
+    background: var(--section);
+}
+
+.workshops__container {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+}
+
+.workshops__head {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
@@ -242,14 +340,14 @@ html, body{
     margin-bottom: 26px;
 }
 
-.workshops__title{
+.workshops__title {
     margin: 0 0 10px;
     font-size: 54px;
     font-weight: 400;
     color: var(--gold);
 }
 
-.workshops__text{
+.workshops__text {
     margin: 0;
     font-size: 18px;
     line-height: 1.7;
@@ -257,131 +355,144 @@ html, body{
     max-width: 68ch;
 }
 
-.workshops__cta{
+.workshops__cta {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
     padding: 14px 34px;
     border-radius: 999px;
-
     background: var(--btnPink);
     color: #fff;
     text-decoration: none;
-
     box-shadow: 0 12px 26px rgba(0,0,0,0.12);
     transition: .15s ease;
 }
-.workshops__cta:hover{
+
+.workshops__cta:hover {
     background: var(--btnPinkHover);
     transform: translateY(-2px);
 }
 
-.workshops__grid{
+.workshops__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 18px;
 }
 
-.wsCard{
+.wsCard {
     background: white;
     border-radius: 28px;
     overflow: hidden;
-
     box-shadow: 0 10px 22px rgba(0,0,0,0.08);
     border: 1px solid rgba(0,0,0,0.04);
 }
 
-.wsCard__img{
+.wsCard__img {
     width: 100%;
     height: 220px;
     object-fit: cover;
     display: block;
 }
 
-.wsCard__body{
+.wsCard__body {
     padding: 16px;
 }
 
-.wsCard__title{
+.wsCard__title {
     margin: 0 0 6px;
     font-size: 18px;
     font-weight: 600;
     color: var(--text);
 }
 
-.wsCard__meta{
+.wsCard__meta {
     margin: 0 0 10px;
     font-size: 14px;
     color: var(--muted);
 }
 
-.wsCard__link{
+.wsCard__link {
     display: inline-flex;
     color: var(--btnOutlineText);
     text-decoration: none;
     border-bottom: 1px solid rgba(181,127,136,0.35);
     padding-bottom: 2px;
 }
-.wsCard__link:hover{
+
+.wsCard__link:hover {
     color: #9c606a;
     border-bottom-color: rgba(156,96,106,0.7);
 }
 
-.workshops__footer{
+.workshops__footer {
     display: flex;
     justify-content: flex-end;
     margin-top: 16px;
 }
 
-.workshops__all{
+.workshops__all {
     color: var(--muted);
     text-decoration: none;
     font-size: 14px;
 }
-.workshops__all:hover{
+
+.workshops__all:hover {
     color: var(--text);
 }
 
-/* ===== mobile ===== */
-@media (max-width: 980px){
-    .header__btn{
+/* ===== MOBILE ===== */
+@media (max-width: 980px) {
+    .header__btn {
         right: 14px;
         padding: 10px 22px;
         font-size: 14px;
     }
-    .header__logo{
+
+    .header__logo {
         width: 78px;
         height: 78px;
     }
 
-    .hero__frame{
+    .hero__frame {
         margin: 18px auto 80px;
     }
 
-    .hero__buttons{
+    .hero__buttons {
         right: 18px;
         bottom: 18px;
         max-width: 80%;
     }
 
-    .about__content{
+    .about__content,
+    .celebration__content {
         grid-template-columns: 1fr;
     }
 
-    .workshops__head{
+    .celebration__photos {
+        flex-direction: row;
+        gap: 12px;
+    }
+
+    .celebration__photos img {
+        width: 50%;
+    }
+
+    .workshops__head {
         flex-direction: column;
         align-items: flex-start;
     }
-    .workshops__grid{
+
+    .workshops__grid {
         grid-template-columns: 1fr;
     }
-    .wsCard__img{
+
+    .wsCard__img {
         height: 240px;
     }
 
     .about__title,
-    .workshops__title{
+    .celebration__title,
+    .workshops__title {
         font-size: 42px;
     }
 }
