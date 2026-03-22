@@ -6,10 +6,12 @@ import heroBachelorette from "../assets/event-bachelorette.jpg";
 import heroKids from "../assets/event-kids.jpg";
 import heroBaby from "../assets/event-babyshower.jpg";
 import heroDate from "../assets/event-date.jpg";
+import heroPicnic from "../assets/picnic.jpg";
 
 // Доп фото
 import birthday1 from "../assets/event-birthday-1.jpg";
 import birthday2 from "../assets/event-birthday-2.jpg";
+import photo2 from "../assets/photo2.jpg";
 
 import bachelorette1 from "../assets/event-bachelorette-1.jpg";
 import bachelorette2 from "../assets/event-bachelorette-2.jpg";
@@ -136,8 +138,6 @@ const formats = [
         ],
         button: "забронировать",
     },
-
-    // ✅ ВЫЕЗДНЫЕ (теперь как все)
     {
         id: "outside",
         title: "Выездные мастер-классы",
@@ -147,10 +147,10 @@ const formats = [
             "Весь необходимый инвентарь, оборудование и расходники",
             "Подходит для любых мероприятий",
         ],
-        mainImg: heroBirthday,
+        mainImg: heroPicnic,
         gallery: [
             { src: birthday1, alt: "Выездной МК — фото 1" },
-            { src: birthday2, alt: "Выездной МК — фото 2" },
+            { src: photo2, alt: "Выездной МК — фото 2" },
         ],
         notes: [
             "Профессиональный мастер и декор включены",
@@ -271,12 +271,53 @@ export default function Events() {
                                         </span>
                                     ))}
                                 </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div className="request" id="request">
-                        <h2 className="eH2">Оставить заявку</h2>
+                                <div className="eSmallNote">
+                                    * Подробнее — на странице{" "}
+                                    <a className="eInlineLink" href="/workshops">
+                                        мастер-классов
+                                    </a>
+                                    .
+                                </div>
+                            </div>
+
+                            <div className="request" id="request">
+                                <div className="request__left">
+                                    <h2 className="eH2">Оставить заявку</h2>
+                                    <p className="eText">
+                                        Напиши дату, количество людей и какой формат хочется — мы ответим
+                                        и предложим варианты.
+                                    </p>
+                                </div>
+
+                                <form className="request__form">
+                                    <label className="field">
+                                        Имя
+                                        <input placeholder="Ваше имя" />
+                                    </label>
+
+                                    <label className="field">
+                                        Контакт
+                                        <input placeholder="+372… / Telegram / Instagram" />
+                                    </label>
+
+                                    <label className="field field--full">
+                                        Сообщение
+                                        <textarea
+                                            rows={4}
+                                            placeholder="Дата, кол-во человек, формат, пожелания"
+                                        />
+                                    </label>
+
+                                    <button className="eBtn eBtn--primary eBtn--wide" type="button">
+                                        отправить
+                                    </button>
+
+                                    <div className="eSmallNote">* демо-форма</div>
+                                </form>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </section>
