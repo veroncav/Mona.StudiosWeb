@@ -7,7 +7,7 @@ import heroKids from "../assets/event-kids.jpg";
 import heroBaby from "../assets/event-babyshower.jpg";
 import heroDate from "../assets/event-date.jpg";
 
-// Доп фото (по 2 на формат)
+// Доп фото
 import birthday1 from "../assets/event-birthday-1.jpg";
 import birthday2 from "../assets/event-birthday-2.jpg";
 
@@ -42,8 +42,8 @@ const formats = [
         lead:
             "У нас можно отметить День Рождения, девичник или просто собраться компанией друзей/коллег и увлекательно провести время вместе!",
         text: [
-            "Особенное событие с мастер-классом у нас в студии — в любой удобный день и время для вашей компании до 12 человек.",
-            "Можно дополнить формат декором и красивой сервировкой — чтобы получились памятные фото и видео.",
+            "Особенное событие с мастер-классом у нас в студии — в любой удобный день и время для вашей компании от 4 до 12 человек.",
+            "Смонтированное видео в подарок о вашем празднике.",
         ],
         mainImg: heroBirthday,
         gallery: [
@@ -51,19 +51,19 @@ const formats = [
             { src: birthday2, alt: "День рождения — фото 2" },
         ],
         notes: [
-            "Мастер-классы по картинам, украшениям, росписи шопперов и другим направлениям!",
-            "Все доступные мастер-классы и точную стоимость уточняйте у менеджера.",
+            "Мастер-классы на выбор: Картины, создание украшений или росписи по шопперам ",
+            "Доступное время и точную стоимость можно уточнить по почте или через Direct в Инстаграм.",
         ],
-        button: "онлайн-запись",
+        button: "Запишись",
     },
     {
         id: "bachelorette",
-        title: "Девичники",
+        title: "Девичники и Дни Рождения",
         lead:
             "Самый эстетичный повод собраться с подругами — творчество, уют и красивые кадры.",
         text: [
-            "Вы выбираете мастер-класс и настроение (нежно/ярко), а мы готовим материалы, атмосферу и детали.",
-            "В конце у каждой — готовая работа и контент на память.",
+            "Вы выбираете мастер-класс, а мы готовим материалы, атмосферу и детали.",
+            "В конце у каждой готовая работа и воспонимания с близкими.",
         ],
         mainImg: heroBachelorette,
         gallery: [
@@ -71,8 +71,8 @@ const formats = [
             { src: bachelorette2, alt: "Девичник — фото 2" },
         ],
         notes: [
-            "Можно сделать тематический девичник: pink party, bridal mood, кино-вечер с проектором.",
-            "Подстроим тайминг: 1.5–3 часа, комфортно и красиво.",
+            "Все материалы, закуски  и напитки входят в стоимость.",
+            "Мероприятие длится 3 часа.",
         ],
         button: "оставить заявку",
     },
@@ -80,10 +80,10 @@ const formats = [
         id: "kids",
         title: "Детские дни рождения",
         lead:
-            "Творческий праздник для детей: понятный мастер-класс, безопасные материалы и море эмоций.",
+            "Творческий праздник для детей: мастер-класс на выбор, море эмоций и веселья",
         text: [
-            "Подберём мастер-класс по возрасту и интересам. Можно добавить игры и небольшой сценарий.",
-            "Родители могут быть рядом — в студии уютно, спокойно и красиво.",
+            ".",
+            "Родители могут быть рядом, в студии уютно, спокойно и красиво.",
         ],
         mainImg: heroKids,
         gallery: [
@@ -91,7 +91,7 @@ const formats = [
             { src: kids2, alt: "Детский праздник — фото 2" },
         ],
         notes: [
-            "Формат подходит для детей 5+ (можно обсудить индивидуально).",
+            "Формат подходит для детей 9+ (можно обсудить индивидуально).",
             "Декор, угощения, музыка — всё продумываем вместе.",
         ],
         button: "забронировать",
@@ -103,7 +103,7 @@ const formats = [
             "Нежный праздник в ожидании малыша: уют, красивые детали и тёплая атмосфера.",
         text: [
             "Сервировка, декор и творческий мастер-класс — получится праздник, который запомнится.",
-            "Можно сделать спокойный чайный формат или более праздничный с сюрпризами.",
+            "На мастер-классе участники будут раскрашивать боди для будущего малыша",
         ],
         mainImg: heroBaby,
         gallery: [
@@ -111,8 +111,8 @@ const formats = [
             { src: baby2, alt: "Baby shower — фото 2" },
         ],
         notes: [
-            "Поможем подобрать стиль: pastel / neutral / pink / blue.",
-            "Сделаем всё аккуратно и эстетично — как на Pinterest.",
+            "Все материалы, закуски и напитки включены в стоимость",
+            "Мероприятие длится 3 часа",
         ],
         button: "оставить заявку",
     },
@@ -123,7 +123,7 @@ const formats = [
             "Увлекательный процесс совместного творчества в волшебной атмосфере.",
         text: [
             "Разделите трогательные моменты с близким человеком в сопровождении профессионального мастера.",
-            "Длительность 1,5–2 часа. Пара рисует картины на одном холсте — получается одна общая работа на память.",
+            "Длительность 2-2,5 часа. Пара рисует картины на одном холсте — получается одна общая работа на память.",
         ],
         mainImg: heroDate,
         gallery: [
@@ -132,9 +132,31 @@ const formats = [
         ],
         notes: [
             "Идеально для годовщины, предложения, сюрприза или просто вечера вдвоём.",
-            "Поможем выбрать сюжет, палитру и стиль — получится красиво даже без опыта.",
+            "Поможем выбрать сюжет, палитру и стиль, получится красиво даже без опыта.",
         ],
         button: "забронировать",
+    },
+
+    // ✅ ВЫЕЗДНЫЕ (теперь как все)
+    {
+        id: "outside",
+        title: "Выездные мастер-классы",
+        lead:
+            "Мы организуем волшебное творческое мероприятие в выбранной вами локации. Событие мечты — в любом месте ✨",
+        text: [
+            "Весь необходимый инвентарь, оборудование и расходники",
+            "Подходит для любых мероприятий",
+        ],
+        mainImg: heroBirthday,
+        gallery: [
+            { src: birthday1, alt: "Выездной МК — фото 1" },
+            { src: birthday2, alt: "Выездной МК — фото 2" },
+        ],
+        notes: [
+            "Профессиональный мастер и декор включены",
+            "Выезд: +10€ за человека к основному прайсу",
+        ],
+        button: "оставить заявку",
     },
 ];
 
@@ -142,22 +164,20 @@ function FormatBlock({ f }) {
     return (
         <section className="formatBlock" id={f.id}>
             <div className="formatGrid">
-                {/* LEFT: big photo */}
                 <div className="formatLeft">
                     <div className="formatMainPhoto">
                         <img src={f.mainImg} alt={f.title} />
                     </div>
                 </div>
 
-                {/* RIGHT: text and notes */}
                 <div className="formatRight">
                     <h2 className="formatTitle">{f.title}</h2>
 
                     <p className="formatLead">{f.lead}</p>
 
                     <div className="formatText">
-                        {f.text.map((p) => (
-                            <p key={p}>{p}</p>
+                        {f.text.map((p, idx) => (
+                            <p key={idx}>{p}</p>
                         ))}
                     </div>
 
@@ -177,7 +197,6 @@ function FormatBlock({ f }) {
                     </a>
                 </div>
 
-                {/* small photos under the text (like reference) */}
                 <div className="formatGallery">
                     {f.gallery.map((img, idx) => (
                         <div className="galleryPhoto" key={idx}>
@@ -199,7 +218,7 @@ export default function Events() {
 
                     <p className="eventsLead">
                         У нас можно отметить День Рождения, девичник, детский праздник,
-                        устроить арт-свидание или Baby Shower — и провести время красиво и
+                        устроить арт-свидание или Baby Shower и провести время красиво и
                         увлекательно!
                     </p>
 
@@ -213,11 +232,12 @@ export default function Events() {
                     </div>
 
                     <div className="formatAnchors">
-                        <a href="#birthday">Праздник</a>
-                        <a href="#bachelorette">Девичник</a>
+                        <a href="#birthday">Праздник под ключ</a>
+                        <a href="#bachelorette">Девичники и дни рождения</a>
                         <a href="#kids">Детский ДР</a>
                         <a href="#baby">Baby Shower</a>
                         <a href="#date">Арт-свидание</a>
+                        <a href="#outside">Выездные мастер-классы</a>
                     </div>
                 </div>
             </section>
@@ -225,13 +245,11 @@ export default function Events() {
             <section className="eventsSection">
                 <div className="eventsContainer">
                     <div className="eventsGridSingle">
-                        {/* FORMATS */}
                         <div className="eventsCol">
                             {formats.map((f) => (
                                 <FormatBlock key={f.id} f={f} />
                             ))}
 
-                            {/* INCLUDED */}
                             <div className="eCard eCard--pink" id="included">
                                 <h2 className="eH2">В стоимость входит</h2>
                                 <ul className="eList">
@@ -244,63 +262,21 @@ export default function Events() {
                                 </ul>
                             </div>
 
-                            {/* WORKSHOPS */}
                             <div className="eCard">
                                 <h2 className="eH2">Мастер-класс на выбор</h2>
                                 <div className="ePills">
                                     {workshopOptions.map((w) => (
                                         <span className="ePill" key={w}>
-                      {w}
-                    </span>
+                                            {w}
+                                        </span>
                                     ))}
-                                </div>
-
-                                <div className="eSmallNote">
-                                    * Подробнее — на странице{" "}
-                                    <a className="eInlineLink" href="/workshops">
-                                        мастер-классов
-                                    </a>
-                                    .
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    {/* REQUEST */}
                     <div className="request" id="request">
-                        <div className="request__left">
-                            <h2 className="eH2">Оставить заявку</h2>
-                            <p className="eText">
-                                Напиши дату, количество людей и какой формат хочется — мы ответим
-                                и предложим варианты.
-                            </p>
-                        </div>
-
-                        <form className="request__form">
-                            <label className="field">
-                                Имя
-                                <input placeholder="Ваше имя" />
-                            </label>
-
-                            <label className="field">
-                                Контакт
-                                <input placeholder="+372… / Telegram / Instagram" />
-                            </label>
-
-                            <label className="field field--full">
-                                Сообщение
-                                <textarea
-                                    rows={4}
-                                    placeholder="Дата, кол-во человек, формат, пожелания"
-                                />
-                            </label>
-
-                            <button className="eBtn eBtn--primary eBtn--wide" type="button">
-                                отправить
-                            </button>
-
-                            <div className="eSmallNote">* демо-форма</div>
-                        </form>
+                        <h2 className="eH2">Оставить заявку</h2>
                     </div>
                 </div>
             </section>
