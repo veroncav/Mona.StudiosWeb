@@ -9,6 +9,7 @@ import atmo1 from "../assets/atmo1.jpg";
 import atmo2 from "../assets/atmo2.jpg";
 import eventsVideo from "../assets/events.mp4";
 import { Link } from "react-router-dom";
+import { FaInstagram } from "react-icons/fa";
 
 export default function Home() {
     const formats = [
@@ -45,16 +46,13 @@ export default function Home() {
                             <span className="about__heart">♥</span>
                             <p>
                                 Mona Studios — творческая студия в Таллинне, где создаются душевные
-                                мастер-классы и особенные события. Это пространство, наполненное
-                                эстетикой, уютом и вниманием к каждой детали.
+                                мастер-классы и особенные события.
                             </p>
                         </div>
                         <div className="about__card about__card--pink">
                             <span className="about__heart">♥</span>
                             <p>
-                                С 2024 года мы создаём незабываемые впечатления для каждого гостя.
-                                Здесь можно расслабиться, творить в спокойной атмосфере и
-                                воплотить свои идеи в красивый результат.
+                                Здесь можно расслабиться, творить и создать красивый результат своими руками.
                             </p>
                         </div>
                     </div>
@@ -64,60 +62,20 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* CELEBRATION SECTION */}
-            <section className="celebration">
-                <div className="celebration__container">
-                    <h2 className="celebration__title">Твой праздник у нас</h2>
-                    <p className="celebration__lead">
-                        У нас можно отметить День Рождения, девичник, детский праздник, устроить арт-свидание
-                        или Baby Shower и провести время красиво и увлекательно!
-                    </p>
-
-                    <div className="celebration__content">
-                        <div className="celebration__videoBlock">
-                            <video src={eventsVideo} autoPlay muted loop className="celebration__video" />
-                        </div>
-                        <div className="celebration__photos">
-                            <img src={atmo1} alt="Праздник 1" />
-                            <img src={atmo2} alt="Праздник 2" />
-                        </div>
-                    </div>
-
-                    <div className="celebration__info">
-                        <Link to="/events" className="celebration__cta">Оставить заявку</Link>
-                        <Link to="/events#included" className="celebration__cta celebration__cta--outline">Что входит</Link>
-
-                        <div className="celebration__formats">
-                            {formats.map((f, idx) => (
-                                <Link to={f.link} className="celebration__format" key={idx}>{f.title}</Link>
-                            ))}
-                        </div>
-
-                        <div className="celebration__textBlock">
-                            <p><strong>Праздник под ключ</strong><br/>
-                                У нас можно отметить День Рождения, девичник или просто собраться компанией друзей/коллег и увлекательно провести время вместе!</p>
-                            <p>Особенное событие с мастер-классом у нас в студии — в любой удобный день и время для вашей компании от 4 до 12 человек.</p>
-                            <p>Смонтированное видео в подарок о вашем празднике.</p>
-                            <p>♡ Мастер-классы на выбор: Картины, создание украшений или росписи по шопперам</p>
-                            <p>♡ Доступное время и точную стоимость можно уточнить по почте или через Direct в Инстаграм.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* WORKSHOPS */}
+            {/* WORKSHOPS (ПЕРЕНЕСЛИ ВВЕРХ) */}
             <section className="workshops" id="workshops">
                 <div className="workshops__container">
                     <div className="workshops__head">
                         <div>
                             <h2 className="workshops__title">Мастер-классы</h2>
                             <p className="workshops__text">
-                                Мы проводим творческие мастер-классы в стиле Pinterest в группах по нашему расписанию,
-                                а также организовываем индивидуальные мероприятия от 2-х человек в любую удобную дату!
+                                Творческие мастер-классы в уютной атмосфере — как по расписанию,
+                                так и индивидуально в удобную дату.
                             </p>
                         </div>
                         <a className="workshops__cta" href="#book">записаться</a>
                     </div>
+
                     <div className="workshops__grid">
                         <article className="wsCard">
                             <img className="wsCard__img" src={jewelryImg} alt="Украшения"/>
@@ -127,25 +85,113 @@ export default function Home() {
                                 <a className="wsCard__link" href="/workshops#jewelry">подробнее →</a>
                             </div>
                         </article>
+
                         <article className="wsCard">
                             <img className="wsCard__img" src={paintingsImg} alt="Живопись"/>
                             <div className="wsCard__body">
                                 <h3 className="wsCard__title">Живопись</h3>
-                                <p className="wsCard__meta">2 часа • формат для новичков</p>
+                                <p className="wsCard__meta">2 часа • для новичков</p>
                                 <a className="wsCard__link" href="/workshops#paintings">подробнее →</a>
                             </div>
                         </article>
+
                         <article className="wsCard">
-                            <img className="wsCard__img" src={totebagsImg} alt="Роспись шопперов"/>
+                            <img className="wsCard__img" src={totebagsImg} alt="Шопперы"/>
                             <div className="wsCard__body">
-                                <h3 className="wsCard__title">Роспись шопперов</h3>
+                                <h3 className="wsCard__title">Шопперы</h3>
                                 <p className="wsCard__meta">1.5–2 часа • свой дизайн</p>
                                 <a className="wsCard__link" href="/workshops#totebags">подробнее →</a>
                             </div>
                         </article>
                     </div>
-                    <div className="workshops__footer">
-                        <a className="workshops__all" href="/workshops">Все мастер-классы →</a>
+                </div>
+            </section>
+
+            {/* CELEBRATION */}
+            <section className="celebration">
+                <div className="celebration__container">
+                    <h2 className="celebration__title">Твой праздник у нас</h2>
+                    <p className="celebration__lead">
+                        У нас можно отметить День Рождения, девичник, детский праздник, устроить арт-свидание или Baby Shower и провести время красиво и увлекательно!
+                    </p>
+
+                    <div className="celebration__content">
+                        <div className="celebration__videoBlock">
+                            <video src={eventsVideo} autoPlay muted loop />
+                        </div>
+                        <div className="celebration__photos">
+                            <img src={atmo1} alt="Праздник"/>
+                            <img src={atmo2} alt="Атмосфера"/>
+                        </div>
+                    </div>
+
+                        <div className="celebration__textBlock">
+
+                            <h3 className="celebration__subtitle">Праздник под ключ</h3>
+
+                            <p>
+                                ♥ Мастер-класс на выбор: Картины на холсте, создание украшений или росписи по шопперам
+                            </p>
+
+                            <p>
+                                ♥ Особенное событие с мастер-классом у нас в студии — в любой удобный день и время
+                                для вашей компании от 4 до 12 человек.
+                            </p>
+
+                            <p>
+                                ♥ Смонтированное видео в подарок о вашем празднике.
+                            </p>
+
+                        </div>
+                    <div className="celebration__info">
+                        <Link to="/events" className="celebration__cta">Оставить заявку</Link>
+
+                        <div className="celebration__formats">
+                            {formats.map((f, idx) => (
+                                <Link key={idx} to={f.link} className="celebration__format">
+                                    {f.title}
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section className="contacts">
+                <div className="contacts__container">
+                    <h2 className="contacts__title">Контакты</h2>
+
+                    <div className="contacts__grid">
+                        {/* Локация */}
+                        <div className="contacts__card">
+                            <p><strong>📍 Локация</strong></p>
+                            <p>Таллинн, Эстония</p>
+                        </div>
+
+                        {/* Связь */}
+                        <div className="contacts__card">
+                            <p><strong>📩 Связь</strong></p>
+                            <p>
+                                <a
+                                    href="https://www.instagram.com/mona.studios/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{
+                                        textDecoration: "none",
+                                        color: "inherit",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: "8px",
+                                        fontWeight: "500"
+                                    }}
+                                >
+                                    <FaInstagram size={24} color="#E1306C" />
+                                    <span>@mona.studios</span>
+                                </a>
+                            </p>
+                            <p>Email: monastudios@email.com</p>
+                        </div>
                     </div>
                 </div>
             </section>

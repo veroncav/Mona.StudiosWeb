@@ -98,8 +98,8 @@ html, body {
 
 .hero__buttons {
     position: absolute;
-    right: clamp(18px, 4vw, 54px);
-    bottom: clamp(18px, 3vw, 44px);
+    right: clamp(5px, 1vw, 20px);
+    bottom: clamp(10px, 2vw, 40px);
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -171,7 +171,7 @@ html, body {
 }
 
 .about__imageBlock img, .about__imageBlock video.about__video {
-    width: 100%;
+    width: 90%;
     border-radius: 28px;
     box-shadow: 0 12px 26px rgba(0,0,0,0.1);
     object-fit: cover;
@@ -208,7 +208,7 @@ html, body {
 
 /* ===== CELEBRATION / ПРАЗДНИК ===== */
 .celebration {
-    padding: 110px 0;
+    padding: 2px 0;
     background: var(--section);
 }
 
@@ -237,20 +237,22 @@ html, body {
 }
 
 .celebration__videoBlock video {
-    width: 100%;
-    border-radius: 28px;
+    width: 75%;
+    margin-left: 60px; /* ← сдвигает вправо */
+    border-radius: 40px;
     box-shadow: 0 12px 26px rgba(0,0,0,0.12);
 }
 
 .celebration__photos {
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 15px;
 }
 
 .celebration__photos img {
-    width: 100%;
-    border-radius: 28px;
+    width: 70%;
+    aspect-ratio: 1 / 1;
+    border-radius: 15px;
     box-shadow: 0 10px 22px rgba(0,0,0,0.08);
     object-fit: cover;
 }
@@ -493,6 +495,96 @@ html, body {
     .about__title,
     .celebration__title,
     .workshops__title {
+        font-size: 42px;
+    }
+}
+/* ===== CONTACTS ===== */
+.contacts {
+    padding: 90px 0 110px;
+    background: var(--section);
+}
+
+.contacts__container {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+}
+
+.contacts__title {
+    margin: 0 0 34px;
+    font-size: 54px;
+    font-weight: 400;
+    color: var(--gold);
+}
+
+.contacts__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.contacts__card {
+    background: white;
+    border-radius: 28px;
+    padding: 26px 28px;
+    box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.04);
+    color: var(--muted);
+    line-height: 1.7;
+    transition: 0.2s ease;
+}
+
+.contacts__card:hover {
+    transform: translateY(-3px);
+}
+
+.contacts__card strong {
+    color: var(--text);
+}
+
+.contacts__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--btnOutlineText);
+    font-weight: 500;
+    margin: 8px 0;
+}
+
+.contacts__link:hover {
+    color: #9c606a;
+}
+
+.contacts__icon {
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+}
+
+/* ===== ПРАЗДНИК БЛОК (УЛУЧШЕНИЕ ТЕКСТА) ===== */
+.celebration__textBlock {
+    background: white;
+    border-radius: 32px;
+    padding: 28px 30px;
+    box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+.celebration__textBlock p {
+    margin-bottom: 12px;
+}
+
+.celebration__textBlock p:last-child {
+    margin-bottom: 0;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 980px) {
+    .contacts__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contacts__title {
         font-size: 42px;
     }
 }
