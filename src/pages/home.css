@@ -82,7 +82,7 @@ html, body {
 /* ===== HERO ===== */
 .hero__frame {
     width: min(1200px, 92%);
-    margin: 22px auto 110px;
+    margin: 130px auto 110px;
     position: relative;
     border-radius: var(--radiusXL);
     overflow: hidden;
@@ -143,7 +143,7 @@ html, body {
 
 /* ===== ABOUT ===== */
 .about {
-    padding: 110px 0;
+    padding: calc(var(--headerHeight) + 40px) 0 110px;
     background: var(--section);
 }
 
