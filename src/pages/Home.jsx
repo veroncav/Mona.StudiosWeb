@@ -45,15 +45,16 @@ export default function Home() {
                         <div className="about__card">
                             <span className="about__heart">♥</span>
                             <p>
-                                Mona Studios — творческая студия в Таллинне, где создаются душевные
-                                мастер-классы и особенные события.
+                                Мы студия по организации душевных мастер-классов и особенных праздников. Пропитанное любовью и уютом пространство в Таллинне. Создаём для Вас незабываемые мероприятия с 2024 года!
                             </p>
                         </div>
                         <div className="about__card about__card--pink">
                             <span className="about__heart">♥</span>
+
                             <p>
                                 Здесь можно расслабиться, творить и создать красивый результат своими руками.
                             </p>
+
                         </div>
                     </div>
                     <div className="about__imageBlock">
@@ -69,8 +70,8 @@ export default function Home() {
                         <div>
                             <h2 className="workshops__title">Мастер-классы</h2>
                             <p className="workshops__text">
-                                Творческие мастер-классы в уютной атмосфере — как по расписанию,
-                                так и индивидуально в удобную дату.
+                                Мы проводим эстетичные творческие мастер-классы в группах по нашему расписанию, а также
+                                организовываем индивидуальные мероприятия от 2-х человек как в студии, так и на выезд!
                             </p>
                         </div>
                         <a className="workshops__cta" href="#book">записаться</a>
@@ -166,12 +167,12 @@ export default function Home() {
                         {/* Локация */}
                         <div className="contacts__card">
                             <p><strong>📍 Локация</strong></p>
-                            <p>Таллинн, Эстония</p>
+                            <p>Türi tn 6, Tallinn, Estonia</p>
                         </div>
 
                         {/* Связь */}
                         <div className="contacts__card">
-                            <p><strong>📩 Связь</strong></p>
+                            <p><strong>📩 Связаться с нами </strong></p>
                             <p>
                                 <a
                                     href="https://www.instagram.com/mona.studios/"
