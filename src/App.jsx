@@ -10,6 +10,10 @@ import Gallery from "./pages/Gallery.jsx";
 import FAQ from "./pages/FAQ.jsx";
 import Contact from "./pages/Contact.jsx";
 
+import AdminLogin from "./pages/AdminLogin.jsx";
+import AdminPanel from "./pages/AdminPanel.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
+
 function App() {
     return (
         <>
@@ -23,6 +27,16 @@ function App() {
                 <Route path="/gallery" element={<Gallery />} />
                 <Route path="/faq" element={<FAQ />} />
                 <Route path="/contact" element={<Contact />} />
+
+                <Route path="/admin-login" element={<AdminLogin />} />
+                <Route
+                    path="/admin"
+                    element={
+                        <ProtectedRoute>
+                            <AdminPanel />
+                        </ProtectedRoute>
+                    }
+                />
             </Routes>
         </>
     );
