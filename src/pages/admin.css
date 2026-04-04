@@ -116,3 +116,63 @@
         font-size: 26px;
     }
 }
+.adminForm--grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.adminBtn--full {
+    grid-column: 1 / -1;
+    justify-self: start;
+}
+
+.adminWorkshopsList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.adminWorkshopCard {
+    background: #fff7f8;
+    border: 1px solid rgba(0,0,0,0.04);
+    border-radius: 20px;
+    padding: 18px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.adminWorkshopTitle {
+    margin: 0 0 6px;
+    font-size: 20px;
+    color: #2a2320;
+}
+
+.adminWorkshopText {
+    margin: 0 0 4px;
+    color: #6b5f57;
+    line-height: 1.6;
+}
+
+.adminBtn--danger {
+    background: #d98d9a;
+    color: white;
+}
+
+@media (max-width: 700px) {
+    .adminForm--grid {
+        grid-template-columns: 1fr;
+    }
+
+    .adminBtn--full {
+        width: 100%;
+        justify-self: stretch;
+    }
+
+    .adminWorkshopCard {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
