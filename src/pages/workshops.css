@@ -2,7 +2,7 @@
     min-height: 100vh;
     background: var(--section);
     font-family: var(--fontBody);
-    color: var(--text);
+    color: var(--gold);
     padding: 180px 40px 180px;
 }
 
@@ -42,12 +42,12 @@
     font-size: 36px;
     font-weight: 500;
     margin: 0 0 24px;
-    color: var(--text);
+    color: var(--gold);
     line-height: 1.15;
 }
 
 .workshopImage{
-    width: 100%;
+    width: 40%;
     display: flex;
     justify-content: center;
     margin: 0 auto 28px;
@@ -55,7 +55,7 @@
 
 .workshopImage img{
     width: 100%;
-    max-width: 760px;
+    max-width: 850px;
     height: auto;
     max-height: 520px;
     object-fit: contain;
