@@ -1,41 +1,44 @@
-const express = require("express");
-const cors = require("cors");
-const db = require("./db");
-
-const app = express();
-
-app.use(cors());
-app.use(express.json());
-
-/* ===== Получить мастер-классы ===== */
-app.get("/api/workshops", (req, res) => {
-    db.all("SELECT * FROM workshops", [], (err, rows) => {
-        if (err) return res.status(500).json(err);
-        res.json(rows);
-    });
-});
-
-/* ===== Записаться ===== */
 app.post("/api/book", (req, res) => {
-    const { id } = req.body;
+    const { id, name, phone, email, comment } = req.body;
 
-    db.get("SELECT spots FROM workshops WHERE id = ?", [id], (err, row) => {
-        if (!row || row.spots <= 0) {
-            return res.status(400).json({ message: "Нет мест" });
+    if (!name || !phone || !email) {
+        return res.status(400).json({ message: "Заполните обязательные поля" });
+    }
+
+    db.get("SELECT * FROM workshops WHERE id = ?", [id], (err, workshop) => {
+        if (err) {
+            return res.status(500).json(err);
+        }
+
+        if (!workshop) {
+            return res.status(404).json({ message: "Мастер-класс не найден" });
+        }
+
+        if (workshop.spots <= 0) {
+            return res.status(400).json({ message: "Свободных мест нет" });
         }
 
         db.run(
-            "UPDATE workshops SET spots = spots - 1 WHERE id = ?",
-            [id],
-            function (err) {
-                if (err) return res.status(500).json(err);
+            `INSERT INTO bookings (workshop_id, name, phone, email, comment)
+             VALUES (?, ?, ?, ?, ?)`,
+            [id, name, phone, email, comment || ""],
+            function (insertErr) {
+                if (insertErr) {
+                    return res.status(500).json(insertErr);
+                }
 
-                res.json({ message: "Вы записались!" });
+                db.run(
+                    "UPDATE workshops SET spots = spots - 1 WHERE id = ?",
+                    [id],
+                    function (updateErr) {
+                        if (updateErr) {
+                            return res.status(500).json(updateErr);
+                        }
+
+                        res.json({ message: "Вы успешно записались!" });
+                    }
+                );
             }
         );
     });
-});
-
-app.listen(5000, () => {
-    console.log("Server running on http://localhost:5000");
 });

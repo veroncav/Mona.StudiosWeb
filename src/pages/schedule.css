@@ -200,3 +200,233 @@
     .scheduleGrid{ grid-template-columns: 1fr; }
     .scheduleHero{ padding: 150px 0 60px; }
 }
+.sBtn {
+    border: none;
+    cursor: pointer;
+    font: inherit;
+}
+
+/* modal */
+.bookingModalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(34, 26, 28, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 9999;
+}
+
+.bookingModal {
+    width: 100%;
+    max-width: 560px;
+    background: #fff7f8;
+    border-radius: 28px;
+    padding: 28px 24px 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+    position: relative;
+}
+
+.bookingModalClose {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    border: none;
+    background: transparent;
+    font-size: 28px;
+    line-height: 1;
+    color: #b57f88;
+    cursor: pointer;
+}
+
+.bookingModalTitle {
+    margin: 0 0 10px;
+    font-size: 30px;
+    color: #2a2320;
+}
+
+.bookingModalSubtitle {
+    margin: 0 0 20px;
+    color: #6b5f57;
+    line-height: 1.6;
+}
+
+.bookingForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.bookingField {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: #6b5f57;
+    font-size: 14px;
+}
+
+.bookingField input,
+.bookingField textarea {
+    border: 1px solid rgba(181, 127, 136, 0.25);
+    background: white;
+    border-radius: 16px;
+    padding: 12px 14px;
+    font: inherit;
+    color: #2a2320;
+    outline: none;
+}
+
+.bookingField input:focus,
+.bookingField textarea:focus {
+    border-color: rgba(181, 127, 136, 0.6);
+}
+
+.bookingField--full {
+    grid-column: 1 / -1;
+}
+
+.bookingSubmit {
+    grid-column: 1 / -1;
+    justify-self: start;
+}
+
+@media (max-width: 640px) {
+    .bookingModal {
+        padding: 22px 18px 18px;
+        border-radius: 22px;
+    }
+
+    .bookingModalTitle {
+        font-size: 24px;
+    }
+
+    .bookingForm {
+        grid-template-columns: 1fr;
+    }
+
+    .bookingSubmit {
+        width: 100%;
+        justify-self: stretch;
+    }
+}
+.sBtn {
+    border: none;
+    cursor: pointer;
+    font: inherit;
+}
+
+.sBtn--disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.bookingModalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(34, 26, 28, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 9999;
+}
+
+.bookingModal {
+    width: 100%;
+    max-width: 560px;
+    background: #fff7f8;
+    border-radius: 28px;
+    padding: 28px 24px 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+    position: relative;
+}
+
+.bookingModalClose {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    border: none;
+    background: transparent;
+    font-size: 28px;
+    line-height: 1;
+    color: #b57f88;
+    cursor: pointer;
+}
+
+.bookingModalTitle {
+    margin: 0 0 10px;
+    font-size: 30px;
+    color: #2a2320;
+}
+
+.bookingModalSubtitle {
+    margin: 0 0 20px;
+    color: #6b5f57;
+    line-height: 1.6;
+}
+
+.bookingForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.bookingField {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: #6b5f57;
+    font-size: 14px;
+}
+
+.bookingField input,
+.bookingField textarea {
+    border: 1px solid rgba(181, 127, 136, 0.25);
+    background: white;
+    border-radius: 16px;
+    padding: 12px 14px;
+    font: inherit;
+    color: #2a2320;
+    outline: none;
+}
+
+.bookingField input:focus,
+.bookingField textarea:focus {
+    border-color: rgba(181, 127, 136, 0.6);
+}
+
+.bookingField--full {
+    grid-column: 1 / -1;
+}
+
+.bookingSubmit {
+    grid-column: 1 / -1;
+    justify-self: start;
+}
+
+.bookingError {
+    font-size: 12px;
+    color: #c05d6e;
+    margin-top: -2px;
+}
+
+@media (max-width: 640px) {
+    .bookingModal {
+        padding: 22px 18px 18px;
+        border-radius: 22px;
+    }
+
+    .bookingModalTitle {
+        font-size: 24px;
+    }
+
+    .bookingForm {
+        grid-template-columns: 1fr;
+    }
+
+    .bookingSubmit {
+        width: 100%;
+        justify-self: stretch;
+    }
+}
