@@ -13,8 +13,7 @@ import Contact from "./pages/Contact.jsx";
 import AdminLogin from "./pages/AdminLogin.jsx";
 import AdminPanel from "./pages/AdminPanel.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
-
-import useCursorFlowers from "./hooks/useCursorFlowers"; // 👈 ДОБАВЬ
+import useCursorFlowers from "./hooks/useCursorFlowers";
 
 function App() {
 

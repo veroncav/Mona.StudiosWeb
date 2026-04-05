@@ -5,6 +5,7 @@ const cors = require("cors");
 const path = require("path");
 const multer = require("multer");
 const db = require("./db");
+const { sendAdminNotification, sendUserConfirmation } = require("./mailer");
 
 const app = express();
 const PORT = 5001;
@@ -166,7 +167,7 @@ app.delete("/api/workshops/:id", (req, res) => {
 /* ===== Получить все заявки ===== */
 app.get("/api/bookings", (req, res) => {
     const query = `
-        SELECT 
+        SELECT
             bookings.id,
             bookings.name,
             bookings.phone,
@@ -177,7 +178,7 @@ app.get("/api/bookings", (req, res) => {
             workshops.date AS workshop_date,
             workshops.time AS workshop_time
         FROM bookings
-        LEFT JOIN workshops ON bookings.workshop_id = workshops.id
+                 LEFT JOIN workshops ON bookings.workshop_id = workshops.id
         ORDER BY bookings.created_at DESC
     `;
 
@@ -195,7 +196,7 @@ app.get("/api/bookings", (req, res) => {
 app.post("/api/book", (req, res) => {
     const { id, name, phone, email, comment } = req.body;
 
-    if (!name || !phone || !email) {
+    if (!id || !name || !phone || !email) {
         return res.status(400).json({ message: "Заполните обязательные поля" });
     }
 
@@ -226,10 +227,27 @@ app.post("/api/book", (req, res) => {
                 db.run(
                     "UPDATE workshops SET spots = spots - 1 WHERE id = ?",
                     [Number(id)],
-                    function (updateErr) {
+                    async function (updateErr) {
                         if (updateErr) {
                             console.error("Ошибка обновления мест:", updateErr.message);
                             return res.status(500).json({ message: "Ошибка обновления мест" });
+                        }
+
+                        const bookingData = {
+                            name,
+                            phone,
+                            email,
+                            comment: comment || "",
+                            workshopTitle: workshop.title,
+                            workshopDate: workshop.date,
+                            workshopTime: workshop.time,
+                        };
+
+                        try {
+                            await sendAdminNotification(bookingData);
+                            await sendUserConfirmation(bookingData);
+                        } catch (emailErr) {
+                            console.error("Ошибка отправки email:", emailErr.message);
                         }
 
                         res.json({ message: "Вы успешно записались!" });
