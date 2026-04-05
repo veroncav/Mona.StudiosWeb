@@ -20,7 +20,7 @@ export default function Schedule() {
 
     const loadWorkshops = async () => {
         try {
-            const res = await fetch("http://localhost:5000/api/workshops");
+            const res = await fetch("http://localhost:5001/api/workshops");
             const data = await res.json();
             setScheduleData(data);
         } catch (err) {
@@ -98,7 +98,7 @@ export default function Schedule() {
         if (!validateForm()) return;
 
         try {
-            const res = await fetch("http://localhost:5000/api/book", {
+            const res = await fetch("http://localhost:5001/api/book", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -155,6 +155,14 @@ export default function Schedule() {
                     <div className="scheduleGrid">
                         {scheduleData.map((item) => (
                             <article className="slotCard" key={item.id}>
+                                {item.image && (
+                                    <img
+                                        src={`http://localhost:5001${item.image}`}
+                                        alt={item.title}
+                                        className="slotImage"
+                                    />
+                                )}
+
                                 <div className="slotTop">
                                     <div className="slotDate">{item.date}</div>
                                     <div className="slotTime">{item.time}</div>

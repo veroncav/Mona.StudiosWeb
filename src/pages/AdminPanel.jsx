@@ -18,6 +18,7 @@ export default function AdminPanel() {
     const [isEditing, setIsEditing] = useState(false);
     const [editingId, setEditingId] = useState(null);
     const [formData, setFormData] = useState(emptyForm);
+    const [selectedFile, setSelectedFile] = useState(null);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -54,8 +55,13 @@ export default function AdminPanel() {
         }));
     };
 
+    const handleFileChange = (e) => {
+        setSelectedFile(e.target.files[0] || null);
+    };
+
     const resetForm = () => {
         setFormData(emptyForm);
+        setSelectedFile(null);
         setIsEditing(false);
         setEditingId(null);
     };
@@ -76,14 +82,21 @@ export default function AdminPanel() {
         return true;
     };
 
-    const buildPayload = () => ({
-        title: formData.title.trim(),
-        date: formData.date.trim(),
-        time: formData.time.trim(),
-        duration: formData.duration.trim(),
-        price: formData.price.trim(),
-        spots: Number(formData.spots),
-    });
+    const buildFormData = () => {
+        const data = new FormData();
+        data.append("title", formData.title.trim());
+        data.append("date", formData.date.trim());
+        data.append("time", formData.time.trim());
+        data.append("duration", formData.duration.trim());
+        data.append("price", formData.price.trim());
+        data.append("spots", Number(formData.spots));
+
+        if (selectedFile) {
+            data.append("image", selectedFile);
+        }
+
+        return data;
+    };
 
     const handleAddWorkshop = async (e) => {
         e.preventDefault();
@@ -95,10 +108,7 @@ export default function AdminPanel() {
 
             const res = await fetch("http://localhost:5001/api/workshops", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(buildPayload()),
+                body: buildFormData(),
             });
 
             const data = await res.json();
@@ -133,6 +143,8 @@ export default function AdminPanel() {
             spots: String(item.spots ?? ""),
         });
 
+        setSelectedFile(null);
+
         window.scrollTo({
             top: 0,
             behavior: "smooth",
@@ -153,20 +165,13 @@ export default function AdminPanel() {
 
             const res = await fetch(`http://localhost:5001/api/workshops/${editingId}`, {
                 method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(buildPayload()),
+                body: buildFormData(),
             });
 
             const data = await res.json();
 
-            console.log("UPDATE STATUS:", res.status);
-            console.log("UPDATE RESPONSE:", data);
-            console.log("EDITING ID:", editingId);
-            console.log("FORM DATA:", buildPayload());
-
             if (!res.ok) {
+                console.error("Ошибка редактирования:", data);
                 alert(data.message || "Ошибка редактирования");
                 return;
             }
@@ -302,6 +307,16 @@ export default function AdminPanel() {
                             />
                         </label>
 
+                        <label className="adminField">
+                            Фото
+                            <input
+                                type="file"
+                                name="image"
+                                accept="image/*"
+                                onChange={handleFileChange}
+                            />
+                        </label>
+
                         <button
                             type="submit"
                             className="adminBtn adminBtn--full"
@@ -347,6 +362,9 @@ export default function AdminPanel() {
                                         <p className="adminWorkshopText">
                                             Осталось мест: {item.spots}
                                         </p>
+                                        {item.image && (
+                                            <p className="adminWorkshopText">Фото добавлено</p>
+                                        )}
                                     </div>
 
                                     <div className="adminActions">

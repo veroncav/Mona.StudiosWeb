@@ -2,15 +2,30 @@
 
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
+const multer = require("multer");
 const db = require("./db");
 
 const app = express();
 const PORT = 5001;
 
-console.log("🔥 SERVER VERSION CRUD FIX 🔥");
+console.log("🔥 NEW SERVER ON 5001 WITH IMAGE UPLOAD 🔥");
 
 app.use(cors());
 app.use(express.json());
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, path.join(__dirname, "uploads"));
+    },
+    filename: (req, file, cb) => {
+        const uniqueName = `${Date.now()}-${file.originalname}`;
+        cb(null, uniqueName);
+    },
+});
+
+const upload = multer({ storage });
 
 app.get("/", (req, res) => {
     res.send("Backend is running");
@@ -47,10 +62,9 @@ app.get("/api/workshops/:id", (req, res) => {
 });
 
 /* ===== Добавить мастер-класс ===== */
-app.post("/api/workshops", (req, res) => {
-    console.log("POST /api/workshops", req.body);
-
+app.post("/api/workshops", upload.single("image"), (req, res) => {
     const { title, date, time, duration, price, spots } = req.body;
+    const image = req.file ? `/uploads/${req.file.filename}` : null;
 
     if (!title || !date || !time || !duration || !price || spots === undefined) {
         return res.status(400).json({
@@ -62,7 +76,7 @@ app.post("/api/workshops", (req, res) => {
     db.run(
         `INSERT INTO workshops (title, date, time, duration, price, spots, image)
          VALUES (?, ?, ?, ?, ?, ?, ?)`,
-        [title, date, time, duration, price, Number(spots), null],
+        [title, date, time, duration, price, Number(spots), image],
         function (err) {
             if (err) {
                 console.error("Ошибка добавления мастер-класса:", err.message);
@@ -81,10 +95,8 @@ app.post("/api/workshops", (req, res) => {
 });
 
 /* ===== Обновить мастер-класс ===== */
-app.put("/api/workshops/:id", (req, res) => {
+app.put("/api/workshops/:id", upload.single("image"), (req, res) => {
     const id = Number(req.params.id);
-    console.log("PUT /api/workshops/:id", id, req.body);
-
     const { title, date, time, duration, price, spots } = req.body;
 
     if (!title || !date || !time || !duration || !price || spots === undefined) {
@@ -104,11 +116,13 @@ app.put("/api/workshops/:id", (req, res) => {
             return res.status(404).json({ message: "Мастер-класс не найден" });
         }
 
+        const image = req.file ? `/uploads/${req.file.filename}` : workshop.image ?? null;
+
         db.run(
             `UPDATE workshops
-             SET title = ?, date = ?, time = ?, duration = ?, price = ?, spots = ?
+             SET title = ?, date = ?, time = ?, duration = ?, price = ?, spots = ?, image = ?
              WHERE id = ?`,
-            [title, date, time, duration, price, Number(spots), id],
+            [title, date, time, duration, price, Number(spots), image, id],
             function (err) {
                 if (err) {
                     console.error("Ошибка обновления мастер-класса:", err.message);
@@ -117,8 +131,6 @@ app.put("/api/workshops/:id", (req, res) => {
                         error: err.message,
                     });
                 }
-
-                console.log("PUT changes =", this.changes);
 
                 if (this.changes === 0) {
                     return res.status(404).json({ message: "Мастер-класс не найден" });
@@ -133,7 +145,6 @@ app.put("/api/workshops/:id", (req, res) => {
 /* ===== Удалить мастер-класс ===== */
 app.delete("/api/workshops/:id", (req, res) => {
     const id = Number(req.params.id);
-    console.log("DELETE /api/workshops/:id", id);
 
     db.run("DELETE FROM workshops WHERE id = ?", [id], function (err) {
         if (err) {
@@ -143,8 +154,6 @@ app.delete("/api/workshops/:id", (req, res) => {
                 error: err.message,
             });
         }
-
-        console.log("DELETE changes =", this.changes);
 
         if (this.changes === 0) {
             return res.status(404).json({ message: "Мастер-класс не найден" });
@@ -231,9 +240,7 @@ app.post("/api/book", (req, res) => {
     });
 });
 
-/* ===== Ловим несуществующие маршруты ===== */
 app.use((req, res) => {
-    console.log("NO ROUTE:", req.method, req.originalUrl);
     res.status(404).json({
         message: "Маршрут не найден",
         method: req.method,
