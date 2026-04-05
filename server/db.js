@@ -1,11 +1,12 @@
 /* eslint-disable no-undef */
 
+const path = require("path");
 const sqlite3 = require("sqlite3").verbose();
 
-const db = new sqlite3.Database("./studio.db");
+const dbPath = path.join(__dirname, "studio.db");
+const db = new sqlite3.Database(dbPath);
 
 db.serialize(() => {
-    // ===== ТАБЛИЦА МАСТЕР-КЛАССОВ =====
     db.run(`
         CREATE TABLE IF NOT EXISTS workshops (
                                                  id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -14,24 +15,42 @@ db.serialize(() => {
                                                  time TEXT,
                                                  duration TEXT,
                                                  price TEXT,
-                                                 spots INTEGER
+                                                 spots INTEGER,
+                                                 image TEXT
         )
     `);
 
-    // ===== ТАБЛИЦА ЗАЯВОК =====
     db.run(`
         CREATE TABLE IF NOT EXISTS bookings (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            workshop_id INTEGER,
-            name TEXT,
-            phone TEXT,
-            email TEXT,
-            comment TEXT,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+                                                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                                workshop_id INTEGER,
+                                                name TEXT,
+                                                phone TEXT,
+                                                email TEXT,
+                                                comment TEXT,
+                                                created_at DATETIME DEFAULT CURRENT_TIMESTAMP
         )
     `);
 
-    // ===== ЗАПОЛНЕНИЕ ДАННЫХ (только если пусто) =====
+    db.all("PRAGMA table_info(workshops)", [], (err, columns) => {
+        if (err) {
+            console.error("Ошибка проверки структуры workshops:", err);
+            return;
+        }
+
+        const hasImageColumn = columns.some((col) => col.name === "image");
+
+        if (!hasImageColumn) {
+            db.run(`ALTER TABLE workshops ADD COLUMN image TEXT`, (alterErr) => {
+                if (alterErr) {
+                    console.error("Ошибка добавления колонки image:", alterErr);
+                } else {
+                    console.log("Колонка image добавлена в таблицу workshops");
+                }
+            });
+        }
+    });
+
     db.get("SELECT COUNT(*) as count FROM workshops", (err, row) => {
         if (err) {
             console.error("Ошибка проверки данных:", err);
@@ -40,12 +59,10 @@ db.serialize(() => {
 
         if (row.count === 0) {
             db.run(`
-                INSERT INTO workshops (title, date, time, duration, price, spots)
-                VALUES 
-                ('Картина на холсте (Текстурная)', '13 мая', '12:00', '2 часа', '50€', 6),
-                ('Создание украшений', '9 мая', '15:30', '2 часа', '45€', 4),
-                ('Роспись шопперов', '20 мая', '12:00', '1.5–2 часа', '40€', 8),
-                ('Картина на холсте (Свободная тема)', '15 мая', '16:00', '2 часа', '50€', 5)
+                INSERT INTO workshops (title, date, time, duration, price, spots, image)
+                VALUES
+                    ('Картина на холсте', '13 мая', '12:00', '2 часа', '50€', 6, null),
+                    ('Украшения', '9 мая', '15:30', '2 часа', '45€', 4, null)
             `);
         }
     });
