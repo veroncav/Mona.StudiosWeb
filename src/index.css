@@ -27,3 +27,26 @@ body,
 body {
   min-height: 100vh;
 }
+
+.flower {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.9;
+
+  animation: fallSoft 3s ease-out forwards;
+}
+
+@keyframes fallSoft {
+  0% {
+    transform: translate(0, 0) rotate(var(--rotate-start)) scale(1);
+    opacity: 1;
+  }
+  60% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(var(--drift), 120px) rotate(var(--rotate-end)) scale(0.9);
+    opacity: 0;
+  }
+}

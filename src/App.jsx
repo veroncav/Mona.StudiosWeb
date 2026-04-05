@@ -14,7 +14,12 @@ import AdminLogin from "./pages/AdminLogin.jsx";
 import AdminPanel from "./pages/AdminPanel.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
+import useCursorFlowers from "./hooks/useCursorFlowers"; // 👈 ДОБАВЬ
+
 function App() {
+
+    useCursorFlowers();
+
     return (
         <>
             <Header />
