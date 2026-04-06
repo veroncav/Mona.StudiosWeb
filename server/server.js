@@ -169,7 +169,7 @@ app.delete("/api/workshops/:id", (req, res) => {
     });
 });
 
-/* ===== Получить все заявки ===== */
+/* ===== Получить все заявки на мастер-классы ===== */
 app.get("/api/bookings", (req, res) => {
     const query = `
         SELECT
@@ -263,30 +263,60 @@ app.post("/api/book", (req, res) => {
     });
 });
 
+/* ===== Получить все заявки на мероприятия ===== */
+app.get("/api/event-requests", (req, res) => {
+    db.all(
+        "SELECT * FROM event_requests ORDER BY created_at DESC",
+        [],
+        (err, rows) => {
+            if (err) {
+                console.error("Ошибка загрузки заявок на мероприятия:", err.message);
+                return res.status(500).json({ message: "Ошибка загрузки заявок" });
+            }
+
+            res.json(rows);
+        }
+    );
+});
+
 /* ===== Заявка на мероприятие ===== */
-app.post("/api/request", async (req, res) => {
+app.post("/api/request", (req, res) => {
     const { name, contact, email, message } = req.body;
 
     if (!name || !contact || !email || !message) {
         return res.status(400).json({ message: "Заполните все поля" });
     }
 
-    const requestData = {
-        name,
-        contact,
-        email,
-        message,
-    };
+    db.run(
+        `INSERT INTO event_requests (name, contact, email, message)
+         VALUES (?, ?, ?, ?)`,
+        [name, contact, email, message],
+        async function (insertErr) {
+            if (insertErr) {
+                console.error("Ошибка сохранения заявки на мероприятие:", insertErr.message);
+                return res.status(500).json({ message: "Ошибка сохранения заявки" });
+            }
 
-    try {
-        await sendEventRequestAdminNotification(requestData);
-        await sendEventRequestUserConfirmation(requestData);
+            const requestData = {
+                name,
+                contact,
+                email,
+                message,
+            };
 
-        res.json({ message: "Заявка успешно отправлена" });
-    } catch (error) {
-        console.error("Ошибка отправки заявки:", error);
-        res.status(500).json({ message: "Ошибка отправки заявки" });
-    }
+            try {
+                await sendEventRequestAdminNotification(requestData);
+                await sendEventRequestUserConfirmation(requestData);
+            } catch (error) {
+                console.error("Ошибка отправки заявки на email:", error);
+            }
+
+            res.json({
+                message: "Заявка успешно отправлена",
+                id: this.lastID,
+            });
+        }
+    );
 });
 
 app.use((req, res) => {
