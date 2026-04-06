@@ -5,12 +5,17 @@ const cors = require("cors");
 const path = require("path");
 const multer = require("multer");
 const db = require("./db");
-const { sendAdminNotification, sendUserConfirmation } = require("./mailer");
+const {
+    sendAdminNotification,
+    sendUserConfirmation,
+    sendEventRequestAdminNotification,
+    sendEventRequestUserConfirmation,
+} = require("./mailer");
 
 const app = express();
 const PORT = 5001;
 
-console.log(" NEW SERVER ON 5001 ");
+console.log("NEW SERVER ON 5001");
 
 app.use(cors());
 app.use(express.json());
@@ -247,7 +252,7 @@ app.post("/api/book", (req, res) => {
                             await sendAdminNotification(bookingData);
                             await sendUserConfirmation(bookingData);
                         } catch (emailErr) {
-                            console.error("Ошибка отправки email:", emailErr.message);
+                            console.error("Ошибка отправки email:", emailErr);
                         }
 
                         res.json({ message: "Вы успешно записались!" });
@@ -256,6 +261,32 @@ app.post("/api/book", (req, res) => {
             }
         );
     });
+});
+
+/* ===== Заявка на мероприятие ===== */
+app.post("/api/request", async (req, res) => {
+    const { name, contact, email, message } = req.body;
+
+    if (!name || !contact || !email || !message) {
+        return res.status(400).json({ message: "Заполните все поля" });
+    }
+
+    const requestData = {
+        name,
+        contact,
+        email,
+        message,
+    };
+
+    try {
+        await sendEventRequestAdminNotification(requestData);
+        await sendEventRequestUserConfirmation(requestData);
+
+        res.json({ message: "Заявка успешно отправлена" });
+    } catch (error) {
+        console.error("Ошибка отправки заявки:", error);
+        res.status(500).json({ message: "Ошибка отправки заявки" });
+    }
 });
 
 app.use((req, res) => {
