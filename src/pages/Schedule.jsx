@@ -197,10 +197,22 @@ export default function Schedule() {
                     </div>
 
                     <section className="noteBlock">
-                        <h2 className="noteTitle">Как записаться</h2>
+                        <h2 className="noteTitle">Хочется особенный формат?</h2>
                         <p className="noteText">
-                            Заполните форму записи. После отправки количество мест уменьшается автоматически.
+                            Если вы хотите отметить День Рождения, девичник, Baby Shower, арт-свидание
+                            или организовать выездной мастер-класс, можно оставить отдельную заявку —
+                            мы свяжемся с вами и предложим подходящие варианты.
                         </p>
+
+                        <div className="noteActions">
+                            <a className="sBtn sBtn--primary" href="/events">
+                                хочу свой праздник
+                            </a>
+
+                            <a className="sBtn sBtn--outline" href="/contact">
+                                связаться с нами
+                            </a>
+                        </div>
                     </section>
                 </div>
             </main>

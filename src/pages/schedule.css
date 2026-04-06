@@ -438,3 +438,35 @@
     border-radius: 24px;
     margin-bottom: 20px;
 }
+.noteActions{
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 18px;
+}
+.noteBlock{
+    margin-top: 38px;
+    padding: 34px 28px;
+    border-radius: 36px;
+    background: #f3d9dd;
+    border: 1px solid rgba(216,168,176,0.22);
+    text-align: center;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.04);
+}
+
+.noteTitle{
+    margin: 0 0 12px;
+    font-size: 36px;
+    font-family: var(--fontTitle);
+    font-weight: 500;
+    color: var(--gold);
+}
+
+.noteText{
+    margin: 0 auto;
+    max-width: 760px;
+    color: var(--muted);
+    line-height: 1.8;
+    font-size: 16px;
+}
