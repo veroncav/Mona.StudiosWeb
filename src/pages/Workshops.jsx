@@ -1,22 +1,48 @@
 import "./workshops.css";
+import { Link } from "react-router-dom";
+import useReveal from "../hooks/useReveal";
 
 import painting from "../assets/paintings.jpg";
 import jewelry from "../assets/jewelry.jpg";
 import shopper from "../assets/totebags.jpg";
 
 export default function Workshops() {
+    const [heroRef, heroVisible] = useReveal();
+    const [paintingRef, paintingVisible] = useReveal();
+    const [jewelryRef, jewelryVisible] = useReveal();
+    const [shopperRef, shopperVisible] = useReveal();
+    const [ctaRef, ctaVisible] = useReveal();
+
     return (
         <div className="workshopsPage">
             <div className="workshopsContainer">
-                <h1 className="workshopsTitle">Мастер-классы</h1>
 
-                <p className="workshopsLead">
-                    В нашей студии вы можете выбрать творческий мастер-класс и провести
-                    время в уютной атмосфере. Все материалы предоставляются, а готовую
-                    работу вы заберёте с собой.
-                </p>
+                <div
+                    ref={heroRef}
+                    className={`reveal ${heroVisible ? "reveal-visible" : ""}`}
+                >
+                    <h1 className="workshopsTitle">Мастер-классы</h1>
 
-                <section className="workshopBlock">
+                    <p className="workshopsLead">
+                        В нашей студии вы можете выбрать творческий мастер-класс и провести
+                        время в уютной атмосфере. Все материалы предоставляются, а готовую
+                        работу вы заберёте с собой.
+                    </p>
+
+                    {/* ЯКОРЯ */}
+                    <div className="workshopsAnchors">
+                        <a href="#paintings">Картины</a>
+                        <a href="#jewelry">Украшения</a>
+                        <a href="#totebags">Шопперы</a>
+                    </div>
+                </div>
+
+                {/* КАРТИНЫ */}
+                <section
+                    id="paintings"
+                    ref={paintingRef}
+                    className={`workshopBlock reveal ${paintingVisible ? "reveal-visible" : ""}`}
+                >
                     <h2 className="workshopName">Картины на холсте</h2>
 
                     <div className="workshopImage">
@@ -34,9 +60,18 @@ export default function Workshops() {
                         В конце мастер-класса у вас останется готовая картина,
                         которая станет стильным элементом интерьера.
                     </p>
+
+                    <Link to="/schedule" className="workshopBtn">
+                        записаться
+                    </Link>
                 </section>
 
-                <section className="workshopBlock">
+                {/* УКРАШЕНИЯ */}
+                <section
+                    id="jewelry"
+                    ref={jewelryRef}
+                    className={`workshopBlock reveal ${jewelryVisible ? "reveal-visible" : ""}`}
+                >
                     <h2 className="workshopName">Создание украшений</h2>
 
                     <div className="workshopImage">
@@ -52,9 +87,18 @@ export default function Workshops() {
                         В результате получится <b>уникальное украшение ручной работы</b>,
                         которого точно не будет ни у кого другого.
                     </p>
+
+                    <Link to="/schedule" className="workshopBtn">
+                        записаться
+                    </Link>
                 </section>
 
-                <section className="workshopBlock">
+                {/* ШОППЕРЫ */}
+                <section
+                    id="totebags"
+                    ref={shopperRef}
+                    className={`workshopBlock reveal ${shopperVisible ? "reveal-visible" : ""}`}
+                >
                     <h2 className="workshopName">Роспись шопперов</h2>
 
                     <div className="workshopImage">
@@ -71,7 +115,35 @@ export default function Workshops() {
                         В результате у вас останется стильный аксессуар,
                         который можно использовать каждый день.
                     </p>
+
+                    <Link to="/schedule" className="workshopBtn">
+                        записаться
+                    </Link>
                 </section>
+
+                {/* НИЖНИЙ БЛОК */}
+                <div
+                    ref={ctaRef}
+                    className={`workshopsBottom reveal ${ctaVisible ? "reveal-visible" : ""}`}
+                >
+                    <h2 className="workshopsBottomTitle">Хочется особенный формат?</h2>
+
+                    <p className="workshopsBottomText">
+                        Можно записаться на мастер-класс по расписанию или оставить заявку
+                        на индивидуальное мероприятие.
+                    </p>
+
+                    <div className="workshopsBottomActions">
+                        <Link to="/schedule" className="workshopBtn">
+                            запись на МК
+                        </Link>
+
+                        <Link to="/events" className="workshopBtn workshopBtn--outline">
+                            хочу свой праздник
+                        </Link>
+                    </div>
+                </div>
+
             </div>
         </div>
     );

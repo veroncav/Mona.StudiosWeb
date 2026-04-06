@@ -1,69 +1,119 @@
+:root{
+    --bg:#f8dfe3;
+    --section:#fff7f8;
+    --gold:#b8926a;
+    --text:#2a2320;
+    --muted:#6b5f57;
+
+    --pink:#eec3ca;
+    --pinkHover:#e6b4bd;
+    --outline: rgba(216,168,176,0.9);
+
+    --radius: 44px;
+
+    --fontBody: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    --fontTitle: "Playfair Display", Georgia, serif;
+}
+
 .workshopsPage{
     min-height: 100vh;
     background: var(--section);
     font-family: var(--fontBody);
-    color: var(--gold);
-    padding: 180px 40px 180px;
+    color: var(--text);
+    padding: 140px 0 110px;
 }
 
 .workshopsContainer{
-    width: min(900px, 92%);
+    width: min(1100px, 92%);
     margin: 0 auto;
-    text-align: center;
+}
+
+/* верхний розовый блок */
+.workshopsHero{
+    background: var(--bg);
+    border-radius: 42px;
+    padding: 56px 42px 42px;
+    margin-bottom: 42px;
+    box-shadow: 0 14px 34px rgba(0,0,0,0.06);
 }
 
 .workshopsTitle{
     font-family: var(--fontTitle);
-    font-size: 52px;
+    font-size: 64px;
     font-weight: 500;
     color: var(--gold);
-    margin: 0 0 14px;
-    line-height: 1.05;
+    margin: 0 0 18px;
+    line-height: 1.02;
     letter-spacing: 0.2px;
 }
 
 .workshopsLead{
     color: var(--muted);
     line-height: 1.7;
-    margin: 0 auto 60px;
-    max-width: 680px;
-    font-size: 16px;
+    margin: 0 0 26px;
+    max-width: 760px;
+    font-size: 18px;
 }
 
+/* якоря */
+.workshopsAnchors{
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.workshopsAnchors a{
+    text-decoration: none;
+    padding: 12px 18px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.75);
+    border: 1px solid rgba(216,168,176,0.35);
+    color: var(--text);
+    transition: 0.2s ease;
+    font-size: 14px;
+}
+
+.workshopsAnchors a:hover{
+    transform: translateY(-2px);
+    background: rgba(255,255,255,0.95);
+}
+
+/* карточки мастер-классов */
 .workshopBlock{
     width: 100%;
-    max-width: 900px;
-    margin: 0 auto 90px;
+    margin: 0 auto 34px;
     text-align: center;
+    background: #fff;
+    border-radius: 36px;
+    padding: 34px 28px 30px;
+    box-shadow: 0 14px 32px rgba(0,0,0,0.06);
+    border: 1px solid rgba(0,0,0,0.04);
 }
 
 .workshopName{
     font-family: var(--fontTitle);
-    font-size: 36px;
+    font-size: 40px;
     font-weight: 500;
-    margin: 0 0 24px;
+    margin: 0 0 22px;
     color: var(--gold);
-    line-height: 1.15;
+    line-height: 1.1;
 }
 
 .workshopImage{
-    width: 40%;
+    width: 100%;
     display: flex;
     justify-content: center;
-    margin: 0 auto 28px;
+    margin: 0 auto 26px;
 }
 
 .workshopImage img{
-    width: 100%;
-    max-width: 850px;
-    height: auto;
-    max-height: 520px;
-    object-fit: contain;
+    width: min(100%, 520px);
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
     object-position: center;
     display: block;
-    margin: 0 auto;
     background: #fff;
-    border-radius: 20px;
+    border-radius: 28px;
     box-shadow: 0 14px 32px rgba(0,0,0,0.08);
     border: 1px solid rgba(0,0,0,0.05);
 }
@@ -72,7 +122,7 @@
     color: var(--muted);
     font-size: 16px;
     line-height: 1.85;
-    max-width: 720px;
+    max-width: 760px;
     margin: 0 auto;
     text-align: center;
 }
@@ -82,21 +132,183 @@
     font-weight: 600;
 }
 
-@media (max-width: 900px){
-    .workshopsTitle{ font-size: 42px; }
-    .workshopName{ font-size: 30px; }
-    .workshopBlock{ margin-bottom: 70px; }
-    .workshopImage img{ max-height: 420px; }
+/* кнопки */
+.workshopBtn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 22px;
+    padding: 14px 28px;
+    border-radius: 999px;
+    text-decoration: none;
+    background: var(--pink);
+    color: #fff;
+    transition: 0.2s ease;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.10);
+    font-size: 15px;
+    border: none;
 }
 
-@media (max-width: 520px){
-    .workshopsPage{ padding: 30px 16px 80px; }
-    .workshopsTitle{ font-size: 34px; }
-    .workshopName{ font-size: 26px; }
-    .workshopText{ font-size: 15px; }
+.workshopBtn:hover{
+    transform: translateY(-2px);
+    background: var(--pinkHover);
+}
+
+.workshopBtn--outline{
+    background: rgba(255,255,255,0.85);
+    color: #b57f88;
+    border: 1px solid var(--outline);
+}
+
+/* нижний блок */
+.workshopsBottom{
+    margin-top: 46px;
+    padding: 34px 28px;
+    border-radius: 36px;
+    background: var(--bg);
+    text-align: center;
+    box-shadow: 0 14px 32px rgba(0,0,0,0.06);
+}
+
+.workshopsBottomTitle{
+    margin: 0 0 12px;
+    font-family: var(--fontTitle);
+    font-size: 36px;
+    font-weight: 500;
+    color: var(--gold);
+}
+
+.workshopsBottomText{
+    margin: 0 auto;
+    max-width: 700px;
+    color: var(--muted);
+    line-height: 1.8;
+    font-size: 16px;
+}
+
+.workshopsBottomActions{
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 18px;
+}
+
+/* анимации */
+.reveal{
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    will-change: opacity, transform;
+}
+
+.reveal-visible{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* tablet */
+@media (max-width: 900px){
+    .workshopsPage{
+        padding: 120px 0 90px;
+    }
+
+    .workshopsHero{
+        padding: 42px 28px 30px;
+    }
+
+    .workshopsTitle{
+        font-size: 48px;
+    }
+
+    .workshopName{
+        font-size: 32px;
+    }
+
+    .workshopsBottomTitle{
+        font-size: 30px;
+    }
 
     .workshopImage img{
-        max-height: 340px;
-        border-radius: 16px;
+        width: min(100%, 460px);
+    }
+}
+
+/* mobile */
+@media (max-width: 520px){
+    .workshopsPage{
+        padding: 108px 0 70px;
+    }
+
+    .workshopsContainer{
+        width: min(94%, 94%);
+    }
+
+    .workshopsHero{
+        border-radius: 28px;
+        padding: 34px 18px 24px;
+        margin-bottom: 26px;
+    }
+
+    .workshopsTitle{
+        font-size: 36px;
+        margin-bottom: 12px;
+    }
+
+    .workshopsLead{
+        font-size: 15px;
+        margin-bottom: 18px;
+    }
+
+    .workshopsAnchors{
+        gap: 8px;
+    }
+
+    .workshopsAnchors a{
+        padding: 10px 14px;
+        font-size: 13px;
+    }
+
+    .workshopBlock{
+        padding: 24px 16px 22px;
+        border-radius: 24px;
+        margin-bottom: 22px;
+    }
+
+    .workshopName{
+        font-size: 27px;
+        margin-bottom: 18px;
+    }
+
+    .workshopText{
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+    .workshopImage img{
+        width: 100%;
+        border-radius: 20px;
+    }
+
+    .workshopsBottom{
+        margin-top: 28px;
+        padding: 24px 16px;
+        border-radius: 24px;
+    }
+
+    .workshopsBottomTitle{
+        font-size: 26px;
+    }
+
+    .workshopsBottomText{
+        font-size: 15px;
+    }
+
+    .workshopsBottomActions{
+        gap: 10px;
+    }
+
+    .workshopBtn{
+        width: 100%;
     }
 }
