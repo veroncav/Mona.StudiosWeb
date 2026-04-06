@@ -1,4 +1,3 @@
-// Home.jsx
 import "./home.css";
 import mainImg from "../assets/main.png";
 import aboutImg from "../assets/about1.jpg";
@@ -10,8 +9,15 @@ import atmo2 from "../assets/atmo2.jpg";
 import eventsVideo from "../assets/events.mp4";
 import { Link } from "react-router-dom";
 import { FaInstagram } from "react-icons/fa";
+import useReveal from "../hooks/useReveal";
 
 export default function Home() {
+    const [heroRef, heroVisible] = useReveal();
+    const [aboutRef, aboutVisible] = useReveal();
+    const [workshopsRef, workshopsVisible] = useReveal();
+    const [celebrationRef, celebrationVisible] = useReveal();
+    const [contactsRef, contactsVisible] = useReveal();
+
     const formats = [
         { title: "Праздник под ключ", link: "/events#birthday" },
         { title: "Девичники и дни рождения", link: "/events#bachelorette" },
@@ -23,10 +29,12 @@ export default function Home() {
 
     return (
         <div className="home">
-
             {/* HERO */}
-            <div className="hero__frame">
-                <img className="hero__img" src={mainImg} alt="Mona Studios"/>
+            <div
+                ref={heroRef}
+                className={`hero__frame reveal ${heroVisible ? "reveal-visible" : ""}`}
+            >
+                <img className="hero__img" src={mainImg} alt="Mona Studios" />
                 <div className="hero__buttons">
                     <Link to="/events" className="hero__btn hero__btn--primary">
                         Твой праздник у нас
@@ -38,7 +46,10 @@ export default function Home() {
             </div>
 
             {/* ABOUT */}
-            <section className="about">
+            <section
+                ref={aboutRef}
+                className={`about reveal ${aboutVisible ? "reveal-visible" : ""}`}
+            >
                 <h2 className="about__title">О студии Mona</h2>
                 <div className="about__content">
                     <div className="about__textBlock">
@@ -54,17 +65,20 @@ export default function Home() {
                             <p>
                                 Здесь можно расслабиться, творить и создать красивый результат своими руками.
                             </p>
-
                         </div>
                     </div>
                     <div className="about__imageBlock">
-                        <img src={aboutImg} alt="Studio"/>
+                        <img src={aboutImg} alt="Studio" />
                     </div>
                 </div>
             </section>
 
-            {/* WORKSHOPS (ПЕРЕНЕСЛИ ВВЕРХ) */}
-            <section className="workshops" id="workshops">
+            {/* WORKSHOPS */}
+            <section
+                ref={workshopsRef}
+                className={`workshops reveal ${workshopsVisible ? "reveal-visible" : ""}`}
+                id="workshops"
+            >
                 <div className="workshops__container">
                     <div className="workshops__head">
                         <div>
@@ -79,7 +93,7 @@ export default function Home() {
 
                     <div className="workshops__grid">
                         <article className="wsCard">
-                            <img className="wsCard__img" src={jewelryImg} alt="Украшения"/>
+                            <img className="wsCard__img" src={jewelryImg} alt="Украшения" />
                             <div className="wsCard__body">
                                 <h3 className="wsCard__title">Украшения</h3>
                                 <p className="wsCard__meta">2 часа • материалы включены</p>
@@ -88,7 +102,7 @@ export default function Home() {
                         </article>
 
                         <article className="wsCard">
-                            <img className="wsCard__img" src={paintingsImg} alt="Живопись"/>
+                            <img className="wsCard__img" src={paintingsImg} alt="Живопись" />
                             <div className="wsCard__body">
                                 <h3 className="wsCard__title">Живопись</h3>
                                 <p className="wsCard__meta">2 часа • для новичков</p>
@@ -97,7 +111,7 @@ export default function Home() {
                         </article>
 
                         <article className="wsCard">
-                            <img className="wsCard__img" src={totebagsImg} alt="Шопперы"/>
+                            <img className="wsCard__img" src={totebagsImg} alt="Шопперы" />
                             <div className="wsCard__body">
                                 <h3 className="wsCard__title">Шопперы</h3>
                                 <p className="wsCard__meta">1.5–2 часа • свой дизайн</p>
@@ -109,7 +123,10 @@ export default function Home() {
             </section>
 
             {/* CELEBRATION */}
-            <section className="celebration">
+            <section
+                ref={celebrationRef}
+                className={`celebration reveal ${celebrationVisible ? "reveal-visible" : ""}`}
+            >
                 <div className="celebration__container">
                     <h2 className="celebration__title">Твой праздник у нас</h2>
                     <p className="celebration__lead">
@@ -121,56 +138,55 @@ export default function Home() {
                             <video src={eventsVideo} autoPlay muted loop />
                         </div>
                         <div className="celebration__photos">
-                            <img src={atmo1} alt="Праздник"/>
-                            <img src={atmo2} alt="Атмосфера"/>
+                            <img src={atmo1} alt="Праздник" />
+                            <img src={atmo2} alt="Атмосфера" />
                         </div>
                     </div>
 
-                        <div className="celebration__textBlock">
+                    <div className="celebration__textBlock">
+                        <h3 className="celebration__subtitle">Праздник под ключ</h3>
 
-                            <h3 className="celebration__subtitle">Праздник под ключ</h3>
+                        <p>
+                            ♥ Мастер-класс на выбор: Картины на холсте, создание украшений или росписи по шопперам
+                        </p>
 
-                            <p>
-                                ♥ Мастер-класс на выбор: Картины на холсте, создание украшений или росписи по шопперам
-                            </p>
+                        <p>
+                            ♥ Особенное событие с мастер-классом у нас в студии — в любой удобный день и время
+                            для вашей компании от 4 до 12 человек.
+                        </p>
 
-                            <p>
-                                ♥ Особенное событие с мастер-классом у нас в студии — в любой удобный день и время
-                                для вашей компании от 4 до 12 человек.
-                            </p>
+                        <p>
+                            ♥ Смонтированное видео в подарок о вашем празднике.
+                        </p>
+                    </div>
 
-                            <p>
-                                ♥ Смонтированное видео в подарок о вашем празднике.
-                            </p>
-
-                        </div>
                     <div className="celebration__info">
                         <Link to="/events" className="celebration__cta">Оставить заявку</Link>
 
                         <div className="celebration__formats">
                             {formats.map((f, idx) => (
-                                <Link key={idx} to={f.link} className="celebration__format">
+                                <a key={idx} href={f.link} className="celebration__format">
                                     {f.title}
-                                </Link>
+                                </a>
                             ))}
                         </div>
                     </div>
                 </div>
             </section>
 
-
-            <section className="contacts">
+            <section
+                ref={contactsRef}
+                className={`contacts reveal ${contactsVisible ? "reveal-visible" : ""}`}
+            >
                 <div className="contacts__container">
                     <h2 className="contacts__title">Контакты</h2>
 
                     <div className="contacts__grid">
-                        {/* Локация */}
                         <div className="contacts__card">
                             <p><strong>📍 Локация</strong></p>
                             <p>Türi tn 6, Tallinn, Estonia</p>
                         </div>
 
-                        {/* Связь */}
                         <div className="contacts__card">
                             <p><strong>📩 Связаться с нами </strong></p>
                             <p>
@@ -192,12 +208,16 @@ export default function Home() {
                                 </a>
                             </p>
                             <p>Email: monastudios@email.com</p>
+
+                            <Link to="/contact" className="contacts__btn">
+                                Связаться с нами
+                            </Link>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <div id="book" className="bookAnchor"/>
+            <div id="book" className="bookAnchor" />
         </div>
     );
 }

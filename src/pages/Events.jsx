@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import "./events.css";
 import useReveal from "../hooks/useReveal";
 
@@ -218,6 +219,8 @@ function FormatBlock({ f }) {
 }
 
 export default function Events() {
+    const location = useLocation();
+
     const [heroRef, heroVisible] = useReveal();
     const [includedRef, includedVisible] = useReveal();
     const [workshopRef, workshopVisible] = useReveal();
@@ -233,6 +236,18 @@ export default function Events() {
     const [loading, setLoading] = useState(false);
     const [statusMessage, setStatusMessage] = useState("");
     const [isError, setIsError] = useState(false);
+
+    useEffect(() => {
+        if (location.hash) {
+            const el = document.querySelector(location.hash);
+
+            if (el) {
+                setTimeout(() => {
+                    el.scrollIntoView({ behavior: "smooth", block: "start" });
+                }, 100);
+            }
+        }
+    }, [location]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
