@@ -14,7 +14,12 @@ export default function AdminPanel() {
         spots: "",
     };
 
+    const [activeTab, setActiveTab] = useState("workshops");
+
     const [workshops, setWorkshops] = useState([]);
+    const [bookings, setBookings] = useState([]);
+    const [requests, setRequests] = useState([]);
+
     const [isEditing, setIsEditing] = useState(false);
     const [editingId, setEditingId] = useState(null);
     const [formData, setFormData] = useState(emptyForm);
@@ -23,6 +28,8 @@ export default function AdminPanel() {
 
     useEffect(() => {
         loadWorkshops();
+        loadBookings();
+        loadRequests();
     }, []);
 
     const loadWorkshops = async () => {
@@ -38,6 +45,38 @@ export default function AdminPanel() {
             setWorkshops(Array.isArray(data) ? data : []);
         } catch (err) {
             console.error("Ошибка загрузки мастер-классов:", err);
+        }
+    };
+
+    const loadBookings = async () => {
+        try {
+            const res = await fetch("http://localhost:5001/api/bookings");
+            const data = await res.json();
+
+            if (!res.ok) {
+                console.error("Ошибка загрузки записей:", data);
+                return;
+            }
+
+            setBookings(Array.isArray(data) ? data : []);
+        } catch (err) {
+            console.error("Ошибка загрузки записей:", err);
+        }
+    };
+
+    const loadRequests = async () => {
+        try {
+            const res = await fetch("http://localhost:5001/api/event-requests");
+            const data = await res.json();
+
+            if (!res.ok) {
+                console.error("Ошибка загрузки заявок:", data);
+                return;
+            }
+
+            setRequests(Array.isArray(data) ? data : []);
+        } catch (err) {
+            console.error("Ошибка загрузки заявок:", err);
         }
     };
 
@@ -144,6 +183,7 @@ export default function AdminPanel() {
         });
 
         setSelectedFile(null);
+        setActiveTab("workshops");
 
         window.scrollTo({
             top: 0,
@@ -231,164 +271,266 @@ export default function AdminPanel() {
                     </button>
                 </div>
 
-                <div className="adminSection">
-                    <h2 className="adminSubtitle">
-                        {isEditing ? "Редактировать мастер-класс" : "Добавить мастер-класс"}
-                    </h2>
-
-                    <form
-                        className="adminForm adminForm--grid"
-                        onSubmit={isEditing ? handleUpdateWorkshop : handleAddWorkshop}
+                <div className="adminTabs">
+                    <button
+                        type="button"
+                        className={`adminBtn ${activeTab === "workshops" ? "" : "adminBtn--outline"}`}
+                        onClick={() => setActiveTab("workshops")}
                     >
-                        <label className="adminField">
-                            Название
-                            <input
-                                type="text"
-                                name="title"
-                                value={formData.title}
-                                onChange={handleChange}
-                                placeholder="Название мастер-класса"
-                            />
-                        </label>
+                        мастер-классы
+                    </button>
 
-                        <label className="adminField">
-                            Дата
-                            <input
-                                type="text"
-                                name="date"
-                                value={formData.date}
-                                onChange={handleChange}
-                                placeholder="Например: 13 мая"
-                            />
-                        </label>
+                    <button
+                        type="button"
+                        className={`adminBtn ${activeTab === "bookings" ? "" : "adminBtn--outline"}`}
+                        onClick={() => setActiveTab("bookings")}
+                    >
+                        записи
+                    </button>
 
-                        <label className="adminField">
-                            Время
-                            <input
-                                type="text"
-                                name="time"
-                                value={formData.time}
-                                onChange={handleChange}
-                                placeholder="12:00"
-                            />
-                        </label>
+                    <button
+                        type="button"
+                        className={`adminBtn ${activeTab === "requests" ? "" : "adminBtn--outline"}`}
+                        onClick={() => setActiveTab("requests")}
+                    >
+                        заявки
+                    </button>
+                </div>
 
-                        <label className="adminField">
-                            Длительность
-                            <input
-                                type="text"
-                                name="duration"
-                                value={formData.duration}
-                                onChange={handleChange}
-                                placeholder="2 часа"
-                            />
-                        </label>
+                {activeTab === "workshops" && (
+                    <>
+                        <div className="adminSection">
+                            <h2 className="adminSubtitle">
+                                {isEditing ? "Редактировать мастер-класс" : "Добавить мастер-класс"}
+                            </h2>
 
-                        <label className="adminField">
-                            Цена
-                            <input
-                                type="text"
-                                name="price"
-                                value={formData.price}
-                                onChange={handleChange}
-                                placeholder="50€"
-                            />
-                        </label>
-
-                        <label className="adminField">
-                            Места
-                            <input
-                                type="number"
-                                name="spots"
-                                value={formData.spots}
-                                onChange={handleChange}
-                                placeholder="6"
-                                min="0"
-                            />
-                        </label>
-
-                        <label className="adminField">
-                            Фото
-                            <input
-                                type="file"
-                                name="image"
-                                accept="image/*"
-                                onChange={handleFileChange}
-                            />
-                        </label>
-
-                        <button
-                            type="submit"
-                            className="adminBtn adminBtn--full"
-                            disabled={loading}
-                        >
-                            {loading
-                                ? "сохранение..."
-                                : isEditing
-                                    ? "сохранить изменения"
-                                    : "добавить мастер-класс"}
-                        </button>
-
-                        {isEditing && (
-                            <button
-                                type="button"
-                                className="adminBtn adminBtn--outline adminBtn--full"
-                                onClick={resetForm}
-                                disabled={loading}
+                            <form
+                                className="adminForm adminForm--grid"
+                                onSubmit={isEditing ? handleUpdateWorkshop : handleAddWorkshop}
                             >
-                                отмена
-                            </button>
-                        )}
-                    </form>
-                </div>
+                                <label className="adminField">
+                                    Название
+                                    <input
+                                        type="text"
+                                        name="title"
+                                        value={formData.title}
+                                        onChange={handleChange}
+                                        placeholder="Название мастер-класса"
+                                    />
+                                </label>
 
-                <div className="adminSection">
-                    <h2 className="adminSubtitle">Список мастер-классов</h2>
+                                <label className="adminField">
+                                    Дата
+                                    <input
+                                        type="text"
+                                        name="date"
+                                        value={formData.date}
+                                        onChange={handleChange}
+                                        placeholder="Например: 13 мая"
+                                    />
+                                </label>
 
-                    <div className="adminWorkshopsList">
-                        {workshops.length === 0 ? (
-                            <p className="adminWorkshopText">Мастер-классов пока нет</p>
-                        ) : (
-                            workshops.map((item) => (
-                                <div className="adminWorkshopCard" key={item.id}>
-                                    <div>
-                                        <h3 className="adminWorkshopTitle">{item.title}</h3>
-                                        <p className="adminWorkshopText">
-                                            {item.date} • {item.time}
-                                        </p>
-                                        <p className="adminWorkshopText">
-                                            {item.duration} • {item.price}
-                                        </p>
-                                        <p className="adminWorkshopText">
-                                            Осталось мест: {item.spots}
-                                        </p>
-                                        {item.image && (
-                                            <p className="adminWorkshopText">Фото добавлено</p>
-                                        )}
+                                <label className="adminField">
+                                    Время
+                                    <input
+                                        type="text"
+                                        name="time"
+                                        value={formData.time}
+                                        onChange={handleChange}
+                                        placeholder="12:00"
+                                    />
+                                </label>
+
+                                <label className="adminField">
+                                    Длительность
+                                    <input
+                                        type="text"
+                                        name="duration"
+                                        value={formData.duration}
+                                        onChange={handleChange}
+                                        placeholder="2 часа"
+                                    />
+                                </label>
+
+                                <label className="adminField">
+                                    Цена
+                                    <input
+                                        type="text"
+                                        name="price"
+                                        value={formData.price}
+                                        onChange={handleChange}
+                                        placeholder="50€"
+                                    />
+                                </label>
+
+                                <label className="adminField">
+                                    Места
+                                    <input
+                                        type="number"
+                                        name="spots"
+                                        value={formData.spots}
+                                        onChange={handleChange}
+                                        placeholder="6"
+                                        min="0"
+                                    />
+                                </label>
+
+                                <label className="adminField">
+                                    Фото
+                                    <input
+                                        type="file"
+                                        name="image"
+                                        accept="image/*"
+                                        onChange={handleFileChange}
+                                    />
+                                </label>
+
+                                <button
+                                    type="submit"
+                                    className="adminBtn adminBtn--full"
+                                    disabled={loading}
+                                >
+                                    {loading
+                                        ? "сохранение..."
+                                        : isEditing
+                                            ? "сохранить изменения"
+                                            : "добавить мастер-класс"}
+                                </button>
+
+                                {isEditing && (
+                                    <button
+                                        type="button"
+                                        className="adminBtn adminBtn--outline adminBtn--full"
+                                        onClick={resetForm}
+                                        disabled={loading}
+                                    >
+                                        отмена
+                                    </button>
+                                )}
+                            </form>
+                        </div>
+
+                        <div className="adminSection">
+                            <h2 className="adminSubtitle">Список мастер-классов</h2>
+
+                            <div className="adminWorkshopsList">
+                                {workshops.length === 0 ? (
+                                    <p className="adminWorkshopText">Мастер-классов пока нет</p>
+                                ) : (
+                                    workshops.map((item) => (
+                                        <div className="adminWorkshopCard" key={item.id}>
+                                            <div>
+                                                <h3 className="adminWorkshopTitle">{item.title}</h3>
+                                                <p className="adminWorkshopText">
+                                                    {item.date} • {item.time}
+                                                </p>
+                                                <p className="adminWorkshopText">
+                                                    {item.duration} • {item.price}
+                                                </p>
+                                                <p className="adminWorkshopText">
+                                                    Осталось мест: {item.spots}
+                                                </p>
+                                                {item.image && (
+                                                    <p className="adminWorkshopText">Фото добавлено</p>
+                                                )}
+                                            </div>
+
+                                            <div className="adminActions">
+                                                <button
+                                                    type="button"
+                                                    className="adminBtn"
+                                                    onClick={() => handleEditWorkshop(item)}
+                                                >
+                                                    редактировать
+                                                </button>
+
+                                                <button
+                                                    type="button"
+                                                    className="adminBtn adminBtn--danger"
+                                                    onClick={() => handleDeleteWorkshop(item.id)}
+                                                >
+                                                    удалить
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ))
+                                )}
+                            </div>
+                        </div>
+                    </>
+                )}
+
+                {activeTab === "bookings" && (
+                    <div className="adminSection">
+                        <h2 className="adminSubtitle">Записи на мастер-классы</h2>
+
+                        <div className="adminWorkshopsList">
+                            {bookings.length === 0 ? (
+                                <p className="adminWorkshopText">Записей пока нет</p>
+                            ) : (
+                                bookings.map((item) => (
+                                    <div className="adminWorkshopCard" key={item.id}>
+                                        <div>
+                                            <h3 className="adminWorkshopTitle">{item.name}</h3>
+                                            <p className="adminWorkshopText">
+                                                {item.email}
+                                            </p>
+                                            <p className="adminWorkshopText">
+                                                {item.phone}
+                                            </p>
+                                            <p className="adminWorkshopText">
+                                                Мастер-класс: {item.workshop_title}
+                                            </p>
+                                            <p className="adminWorkshopText">
+                                                {item.workshop_date} • {item.workshop_time}
+                                            </p>
+                                            {item.comment && (
+                                                <p className="adminWorkshopText">
+                                                    Комментарий: {item.comment}
+                                                </p>
+                                            )}
+                                            <p className="adminWorkshopText">
+                                                Создано: {item.created_at}
+                                            </p>
+                                        </div>
                                     </div>
-
-                                    <div className="adminActions">
-                                        <button
-                                            type="button"
-                                            className="adminBtn"
-                                            onClick={() => handleEditWorkshop(item)}
-                                        >
-                                            редактировать
-                                        </button>
-
-                                        <button
-                                            type="button"
-                                            className="adminBtn adminBtn--danger"
-                                            onClick={() => handleDeleteWorkshop(item.id)}
-                                        >
-                                            удалить
-                                        </button>
-                                    </div>
-                                </div>
-                            ))
-                        )}
+                                ))
+                            )}
+                        </div>
                     </div>
-                </div>
+                )}
+
+                {activeTab === "requests" && (
+                    <div className="adminSection">
+                        <h2 className="adminSubtitle">Заявки с сайта</h2>
+
+                        <div className="adminWorkshopsList">
+                            {requests.length === 0 ? (
+                                <p className="adminWorkshopText">Заявок пока нет</p>
+                            ) : (
+                                requests.map((item) => (
+                                    <div className="adminWorkshopCard" key={item.id}>
+                                        <div>
+                                            <h3 className="adminWorkshopTitle">{item.name}</h3>
+                                            <p className="adminWorkshopText">
+                                                {item.email}
+                                            </p>
+                                            <p className="adminWorkshopText">
+                                                {item.contact}
+                                            </p>
+                                            <p className="adminWorkshopText">
+                                                Сообщение: {item.message}
+                                            </p>
+                                            <p className="adminWorkshopText">
+                                                Создано: {item.created_at}
+                                            </p>
+                                        </div>
+                                    </div>
+                                ))
+                            )}
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );
