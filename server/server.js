@@ -10,7 +10,7 @@ const { sendAdminNotification, sendUserConfirmation } = require("./mailer");
 const app = express();
 const PORT = 5001;
 
-console.log("🔥 NEW SERVER ON 5001 WITH IMAGE UPLOAD 🔥");
+console.log(" NEW SERVER ON 5001 ");
 
 app.use(cors());
 app.use(express.json());

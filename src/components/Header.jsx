@@ -44,6 +44,7 @@ export default function Header() {
                     <Link to="/schedule" onClick={() => setOpen(false)}>расписание</Link>
                     <Link to="/events" onClick={() => setOpen(false)}>мероприятия</Link>
                     <Link to="/gallery" onClick={() => setOpen(false)}>галерея</Link>
+                    <Link to="/contact" onClick={() => setOpen(false)}>контакт</Link>
                     <Link to="/faq" onClick={() => setOpen(false)}>faq</Link>
                 </nav>
             </div>
