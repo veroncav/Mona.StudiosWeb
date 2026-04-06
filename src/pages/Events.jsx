@@ -1,4 +1,6 @@
+import { useState } from "react";
 import "./events.css";
+import useReveal from "../hooks/useReveal";
 
 // Главные фото
 import heroBirthday from "../assets/event-birthday.jpg";
@@ -161,8 +163,14 @@ const formats = [
 ];
 
 function FormatBlock({ f }) {
+    const [revealRef, revealVisible] = useReveal();
+
     return (
-        <section className="formatBlock" id={f.id}>
+        <section
+            className={`formatBlock reveal ${revealVisible ? "reveal-visible" : ""}`}
+            id={f.id}
+            ref={revealRef}
+        >
             <div className="formatGrid">
                 <div className="formatLeft">
                     <div className="formatMainPhoto">
@@ -210,9 +218,79 @@ function FormatBlock({ f }) {
 }
 
 export default function Events() {
+    const [heroRef, heroVisible] = useReveal();
+    const [includedRef, includedVisible] = useReveal();
+    const [workshopRef, workshopVisible] = useReveal();
+    const [requestRef, requestVisible] = useReveal();
+
+    const [formData, setFormData] = useState({
+        name: "",
+        contact: "",
+        email: "",
+        message: "",
+    });
+
+    const [loading, setLoading] = useState(false);
+    const [statusMessage, setStatusMessage] = useState("");
+    const [isError, setIsError] = useState(false);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!formData.name || !formData.contact || !formData.email || !formData.message) {
+            setIsError(true);
+            setStatusMessage("Заполните все поля");
+            return;
+        }
+
+        try {
+            setLoading(true);
+            setIsError(false);
+            setStatusMessage("");
+
+            const response = await fetch("http://localhost:5001/api/request", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message || "Ошибка отправки заявки");
+            }
+
+            setStatusMessage("Спасибо! Ваша заявка отправлена");
+            setFormData({
+                name: "",
+                contact: "",
+                email: "",
+                message: "",
+            });
+        } catch (error) {
+            setIsError(true);
+            setStatusMessage(error.message || "Не удалось отправить заявку");
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="eventsPage">
-            <section className="eventsHero">
+            <section
+                className={`eventsHero reveal ${heroVisible ? "reveal-visible" : ""}`}
+                ref={heroRef}
+            >
                 <div className="eventsContainer">
                     <h1 className="eventsTitle">Твой праздник у нас</h1>
 
@@ -250,7 +328,11 @@ export default function Events() {
                                 <FormatBlock key={f.id} f={f} />
                             ))}
 
-                            <div className="eCard eCard--pink" id="included">
+                            <div
+                                className={`eCard eCard--pink reveal-left ${includedVisible ? "reveal-visible" : ""}`}
+                                id="included"
+                                ref={includedRef}
+                            >
                                 <h2 className="eH2">В стоимость входит</h2>
                                 <ul className="eList">
                                     {includedList.map((item) => (
@@ -262,7 +344,10 @@ export default function Events() {
                                 </ul>
                             </div>
 
-                            <div className="eCard">
+                            <div
+                                className={`eCard reveal-right ${workshopVisible ? "reveal-visible" : ""}`}
+                                ref={workshopRef}
+                            >
                                 <h2 className="eH2">Мастер-класс на выбор</h2>
                                 <div className="ePills">
                                     {workshopOptions.map((w) => (
@@ -281,7 +366,11 @@ export default function Events() {
                                 </div>
                             </div>
 
-                            <div className="request" id="request">
+                            <div
+                                className={`request reveal ${requestVisible ? "reveal-visible" : ""}`}
+                                id="request"
+                                ref={requestRef}
+                            >
                                 <div className="request__left">
                                     <h2 className="eH2">Оставить заявку</h2>
                                     <p className="eText">
@@ -290,30 +379,67 @@ export default function Events() {
                                     </p>
                                 </div>
 
-                                <form className="request__form">
+                                <form className="request__form" onSubmit={handleSubmit}>
                                     <label className="field">
                                         Имя
-                                        <input placeholder="Ваше имя" />
+                                        <input
+                                            name="name"
+                                            value={formData.name}
+                                            onChange={handleChange}
+                                            placeholder="Ваше имя"
+                                        />
                                     </label>
 
                                     <label className="field">
                                         Контакт
-                                        <input placeholder="+372… / Telegram / Instagram" />
+                                        <input
+                                            name="contact"
+                                            value={formData.contact}
+                                            onChange={handleChange}
+                                            placeholder="+372…/ Instagram"
+                                        />
+                                    </label>
+
+                                    <label className="field">
+                                        Email
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            value={formData.email}
+                                            onChange={handleChange}
+                                            placeholder="Ваш email"
+                                        />
                                     </label>
 
                                     <label className="field field--full">
                                         Сообщение
                                         <textarea
+                                            name="message"
+                                            value={formData.message}
+                                            onChange={handleChange}
                                             rows={4}
                                             placeholder="Дата, кол-во человек, формат, пожелания"
                                         />
                                     </label>
 
-                                    <button className="eBtn eBtn--primary eBtn--wide" type="button">
-                                        отправить
+                                    <button
+                                        className="eBtn eBtn--primary eBtn--wide"
+                                        type="submit"
+                                        disabled={loading}
+                                    >
+                                        {loading ? "отправка..." : "отправить"}
                                     </button>
 
-                                    <div className="eSmallNote">* демо-форма</div>
+                                    {statusMessage && (
+                                        <div
+                                            className="eSmallNote"
+                                            style={{
+                                                color: isError ? "#b42318" : "#7a5c61",
+                                            }}
+                                        >
+                                            {statusMessage}
+                                        </div>
+                                    )}
                                 </form>
                             </div>
 
