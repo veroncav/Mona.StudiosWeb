@@ -11,12 +11,10 @@
 
     --radius: 44px;
 
-    /* fonts */
     --fontBody: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     --fontTitle: "Playfair Display", Georgia, serif;
 }
 
-/* page */
 .eventsPage{
     min-height: 100vh;
     background: var(--bg);
@@ -29,7 +27,6 @@
     margin: 0 auto;
 }
 
-/* hero */
 .eventsHero{
     padding: 150px 0 60px;
     background: var(--bg);
@@ -60,13 +57,13 @@
     flex-wrap: wrap;
 }
 
-/* anchors */
 .formatAnchors{
     margin-top: 16px;
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
 }
+
 .formatAnchors a{
     text-decoration: none;
     font-size: 13px;
@@ -77,12 +74,12 @@
     border: 1px solid rgba(216,168,176,0.35);
     transition: .15s ease;
 }
+
 .formatAnchors a:hover{
     transform: translateY(-1px);
     background: rgba(255,255,255,0.85);
 }
 
-/* buttons */
 .eBtn{
     display: inline-flex;
     align-items: center;
@@ -101,6 +98,7 @@
     color: #fff;
     box-shadow: 0 12px 26px rgba(0,0,0,0.12);
 }
+
 .eBtn--primary:hover{
     background: var(--pinkHover);
     transform: translateY(-2px);
@@ -111,26 +109,26 @@
     color: #b57f88;
     border: 1px solid var(--outline);
 }
+
 .eBtn--outline:hover{
     background: rgba(255,255,255,0.8);
     transform: translateY(-1px);
 }
 
-.eBtn--wide{ width: 100%; }
+.eBtn--wide{
+    width: 100%;
+}
 
-/* section */
 .eventsSection{
     background: var(--section);
     padding: 60px 0 120px;
 }
 
-/* single column layout */
 .eventsGridSingle{
     display: grid;
     grid-template-columns: 1fr;
 }
 
-/* cards */
 .eCard{
     background: #fff;
     border-radius: var(--radius);
@@ -165,12 +163,12 @@
     border-bottom: 1px solid rgba(181,127,136,0.35);
     padding-bottom: 2px;
 }
+
 .eInlineLink:hover{
     color: #9c606a;
     border-bottom-color: rgba(156,96,106,0.7);
 }
 
-/* list */
 .eList{
     list-style: none;
     padding: 0;
@@ -178,6 +176,7 @@
     display: grid;
     gap: 10px;
 }
+
 .eList li{
     display: grid;
     grid-template-columns: 22px 1fr;
@@ -186,6 +185,7 @@
     color: var(--muted);
     line-height: 1.6;
 }
+
 .eHeart{
     color: #b57f88;
     font-size: 18px;
@@ -193,12 +193,12 @@
     margin-top: 2px;
 }
 
-/* pills */
 .ePills{
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
 }
+
 .ePill{
     display: inline-flex;
     padding: 10px 14px;
@@ -215,14 +215,10 @@
     color: var(--muted);
 }
 
-/* ===== FORMATS (updated) ===== */
-
-/* больше расстояние между форматами */
 .formatBlock{
-    margin-bottom: 72px; /* было меньше */
+    margin-bottom: 72px;
 }
 
-/* заголовок формата сверху отдельно */
 .formatTitle{
     margin: 0 0 14px;
     font-family: var(--fontTitle);
@@ -232,31 +228,29 @@
     line-height: 1.05;
 }
 
-/* основной layout блока */
 .formatGrid{
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr; /* фото больше */
+    grid-template-columns: 1.15fr 0.85fr;
     gap: 26px;
     align-items: start;
 }
 
-/* прямоугольное большое фото */
 .formatMainPhoto{
-    border-radius: 26px;          /* прямоугольнее */
+    border-radius: 26px;
     overflow: hidden;
     box-shadow: 0 16px 36px rgba(0,0,0,0.10);
     border: 1px solid rgba(0,0,0,0.05);
     background: #fff;
 }
+
 .formatMainPhoto img{
     width: 100%;
-    height: 420px;               /* больше */
+    height: 420px;
     object-fit: cover;
-    object-position: center;      /* центр */
+    object-position: center;
     display: block;
 }
 
-/* текст справа */
 .formatLead{
     margin: 0 0 12px;
     color: var(--muted);
@@ -271,17 +265,17 @@
     font-size: 15px;
 }
 
-/* note box */
 .formatNoteBox{
     margin-top: 14px;
-    border-radius: 22px;  /* прямоугольнее */
-    padding: 16px 16px;
+    border-radius: 22px;
+    padding: 16px;
     background: rgba(255,255,255,0.80);
     border: 1px solid rgba(216,168,176,0.35);
     box-shadow: 0 10px 22px rgba(0,0,0,0.06);
     display: grid;
     gap: 10px;
 }
+
 .noteItem{
     display: grid;
     grid-template-columns: 22px 1fr;
@@ -291,6 +285,7 @@
     line-height: 1.6;
     font-size: 13px;
 }
+
 .noteHeart{
     color: #b57f88;
     font-size: 18px;
@@ -298,7 +293,6 @@
     margin-top: 2px;
 }
 
-/* CTA */
 .formatCta{
     margin-top: 16px;
     display: inline-flex;
@@ -314,12 +308,12 @@
     box-shadow: 0 12px 26px rgba(0,0,0,0.12);
     transition: .15s ease;
 }
+
 .formatCta:hover{
     background: var(--pinkHover);
     transform: translateY(-2px);
 }
 
-/* 2 маленькие прямоугольные фотки снизу справа */
 .formatGallery{
     grid-column: 2 / 3;
     display: grid;
@@ -335,15 +329,15 @@
     border: 1px solid rgba(0,0,0,0.05);
     background: #fff;
 }
+
 .galleryPhoto img{
     width: 100%;
-    height: 190px; /* больше */
+    height: 190px;
     object-fit: cover;
     object-position: center;
     display: block;
 }
 
-/* request form */
 .request{
     margin-top: 18px;
     background: rgba(255,255,255,0.65);
@@ -373,11 +367,13 @@
 .field textarea{
     border: 1px solid rgba(0,0,0,0.08);
     border-radius: 18px;
-    padding: 12px 12px;
+    padding: 12px;
     font-size: 14px;
     outline: none;
     background: rgba(255,255,255,0.9);
     transition: border-color .15s ease, box-shadow .15s ease;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .field input:focus,
@@ -386,48 +382,170 @@
     box-shadow: 0 0 0 4px rgba(238,195,202,0.35);
 }
 
-.field--full{ grid-column: 1 / -1; }
-
-/* responsive */
-@media (max-width: 980px){
-    .eventsTitle{ font-size: 42px; }
-    .request{ grid-template-columns: 1fr; }
-    .request__form{ grid-template-columns: 1fr; }
-
-    .formatGrid{ grid-template-columns: 1fr; }
-    .formatGallery{ grid-column: auto; }
-    .formatMainPhoto img{ height: 320px; }
-    .formatTitle{ font-size: 38px; }
+.field--full{
+    grid-column: 1 / -1;
 }
 
-@media (max-width: 560px){
-    .formatGallery{ grid-template-columns: 1fr; }
-    .galleryPhoto img{ height: 220px; }
-    .formatMainPhoto img{ height: 300px; }
-}
-
-/* reveal animations */
 .reveal,
 .reveal-left,
-.reveal-right {
+.reveal-right{
     opacity: 0;
     transition: opacity 0.8s ease, transform 0.8s ease;
     will-change: opacity, transform;
 }
 
-.reveal {
+.reveal{
     transform: translateY(40px);
 }
 
-.reveal-left {
+.reveal-left{
     transform: translateX(-50px);
 }
 
-.reveal-right {
+.reveal-right{
     transform: translateX(50px);
 }
 
-.reveal-visible {
+.reveal-visible{
     opacity: 1;
     transform: translate(0, 0);
 }
+
+@media (max-width: 980px){
+    .eventsHero{
+        padding: 130px 0 46px;
+    }
+
+    .eventsTitle{
+        font-size: 42px;
+    }
+
+    .eventsLead{
+        font-size: 16px;
+    }
+
+    .request{
+        grid-template-columns: 1fr;
+    }
+
+    .request__form{
+        grid-template-columns: 1fr;
+    }
+
+    .formatGrid{
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .formatGallery{
+        grid-column: auto;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .formatMainPhoto img{
+        height: 320px;
+    }
+
+    .formatTitle{
+        font-size: 38px;
+    }
+}
+
+@media (max-width: 560px){
+    .eventsContainer{
+        width: min(94%, 94%);
+    }
+
+    .eventsHero{
+        padding: 110px 0 34px;
+    }
+
+    .eventsTitle{
+        font-size: 34px;
+        line-height: 1.08;
+    }
+
+    .eventsLead{
+        font-size: 15px;
+        line-height: 1.65;
+    }
+
+    .eventsActions{
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .eBtn{
+        width: 100%;
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+
+    .formatAnchors{
+        gap: 8px;
+    }
+
+    .formatAnchors a{
+        width: 100%;
+        text-align: center;
+        padding: 10px 12px;
+        box-sizing: border-box;
+    }
+
+    .formatBlock{
+        margin-bottom: 46px;
+    }
+
+    .formatTitle{
+        font-size: 28px;
+        line-height: 1.1;
+    }
+
+    .formatLead,
+    .formatText p,
+    .eText{
+        font-size: 15px;
+    }
+
+    .formatMainPhoto img{
+        height: 260px;
+    }
+
+    .formatGallery{
+        grid-template-columns: 1fr;
+    }
+
+    .galleryPhoto img{
+        height: 220px;
+    }
+
+    .eCard,
+    .request{
+        border-radius: 26px;
+        padding: 18px 16px;
+    }
+
+    .request{
+        gap: 14px;
+    }
+
+    .formatNoteBox{
+        padding: 14px;
+        border-radius: 18px;
+    }
+
+    .formatCta{
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+
+    .ePills{
+        gap: 8px;
+    }
+
+    .ePill{
+        font-size: 12px;
+        padding: 9px 12px;
+    }
+}ы
