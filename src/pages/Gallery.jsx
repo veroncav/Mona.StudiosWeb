@@ -1,6 +1,5 @@
 import "./gallery.css";
 
-// Импорт всех картинок
 import birthday from "../assets/event-birthday.jpg";
 import birthday1 from "../assets/event-birthday-1.jpg";
 import birthday2 from "../assets/event-birthday-2.jpg";
